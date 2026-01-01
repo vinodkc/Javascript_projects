@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="quiz-container" id="quizContainer">
+            <div class="start-screen" id="startScreen">
+                <h1>🎯 JavaScript Quiz</h1>
+                <p class="description">Test your JavaScript knowledge with 10 multiple-choice questions</p>
+                <div class="quiz-info">
+                    <div class="info-item">
+                        <span class="info-icon">📋</span>
+                        <span class="info-text">10 Questions</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">⏱️</span>
+                        <span class="info-text">No Time Limit</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-icon">🏆</span>
+                        <span class="info-text">Score to Win</span>
+                    </div>
+                </div>
+                <button class="btn-start" id="startBtn">Start Quiz</button>
+            </div>
+
+            <div class="quiz-screen hidden" id="quizScreen">
+                <div class="quiz-header">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressBar"></div>
+                    </div>
+                    <div class="quiz-stats">
+                        <span class="question-number">Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span></span>
+                        <span class="score">Score: <span id="currentScore">0</span></span>
+                    </div>
+                </div>
+
+                <div class="question-container">
+                    <h2 class="question" id="question">Question text will appear here</h2>
+                    <div class="options" id="options"></div>
+                </div>
+
+                <button class="btn-next hidden" id="nextBtn">Next Question</button>
+            </div>
+
+            <div class="result-screen hidden" id="resultScreen">
+                <div class="result-icon" id="resultIcon">🎉</div>
+                <h2 class="result-title" id="resultTitle">Quiz Completed!</h2>
+                <div class="final-score">
+                    <span class="score-label">Your Score</span>
+                    <span class="score-value" id="finalScore">0/10</span>
+                    <span class="score-percentage" id="scorePercentage">0%</span>
+                </div>
+
+                <div class="score-message" id="scoreMessage">Excellent work!</div>
+
+                <div class="answer-summary">
+                    <h3>Answer Summary</h3>
+                    <div class="summary-stats">
+                        <div class="summary-item correct">
+                            <span class="summary-icon">✓</span>
+                            <span class="summary-label">Correct</span>
+                            <span class="summary-value" id="correctCount">0</span>
+                        </div>
+                        <div class="summary-item incorrect">
+                            <span class="summary-icon">✗</span>
+                            <span class="summary-label">Incorrect</span>
+                            <span class="summary-value" id="incorrectCount">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button class="btn-restart" id="restartBtn">Try Again</button>
+                    <button class="btn-review" id="reviewBtn">Review Answers</button>
+                </div>
+            </div>
+
+            <div class="review-screen hidden" id="reviewScreen">
+                <h2>📝 Answer Review</h2>
+                <div class="review-list" id="reviewList"></div>
+                <button class="btn-restart" id="backToResultBtn">Back to Results</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

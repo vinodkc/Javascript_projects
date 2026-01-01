@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown Timer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>⏰ Countdown Timer</h1>
+        <p class="subtitle">Set your target date and watch the countdown</p>
+
+        <div class="timer-setup" id="timerSetup">
+            <h2>Set Countdown</h2>
+            
+            <div class="form-group">
+                <label for="eventName">Event Name</label>
+                <input type="text" id="eventName" placeholder="e.g., New Year 2026" maxlength="50">
+            </div>
+
+            <div class="datetime-inputs">
+                <div class="form-group">
+                    <label for="targetDate">Target Date</label>
+                    <input type="date" id="targetDate">
+                </div>
+
+                <div class="form-group">
+                    <label for="targetTime">Target Time</label>
+                    <input type="time" id="targetTime" value="00:00">
+                </div>
+            </div>
+
+            <h3>Quick Presets</h3>
+            <div class="preset-buttons">
+                <button class="preset-btn" data-minutes="1">1 Minute</button>
+                <button class="preset-btn" data-minutes="5">5 Minutes</button>
+                <button class="preset-btn" data-minutes="30">30 Minutes</button>
+                <button class="preset-btn" data-hours="1">1 Hour</button>
+                <button class="preset-btn" data-hours="24">1 Day</button>
+                <button class="preset-btn" data-days="7">1 Week</button>
+            </div>
+
+            <button class="btn-start" id="startBtn">Start Countdown</button>
+        </div>
+
+        <div class="timer-display hidden" id="timerDisplay">
+            <div class="event-header">
+                <h2 id="eventTitle">Countdown to Event</h2>
+                <button class="btn-icon" id="editBtn" title="Edit">✏️</button>
+            </div>
+
+            <div class="countdown">
+                <div class="time-unit">
+                    <div class="time-value" id="days">00</div>
+                    <div class="time-label">Days</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-unit">
+                    <div class="time-value" id="hours">00</div>
+                    <div class="time-label">Hours</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-unit">
+                    <div class="time-value" id="minutes">00</div>
+                    <div class="time-label">Minutes</div>
+                </div>
+                <div class="time-separator">:</div>
+                <div class="time-unit">
+                    <div class="time-value" id="seconds">00</div>
+                    <div class="time-label">Seconds</div>
+                </div>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="timer-info">
+                <div class="info-row">
+                    <span class="info-label">Target Date:</span>
+                    <span class="info-value" id="targetDateDisplay">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Total Time:</span>
+                    <span class="info-value" id="totalTimeDisplay">-</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Time Remaining:</span>
+                    <span class="info-value" id="remainingDisplay">-</span>
+                </div>
+            </div>
+
+            <button class="btn-reset" id="resetBtn">🔄 Reset Timer</button>
+        </div>
+
+        <div class="completed-screen hidden" id="completedScreen">
+            <div class="celebration">🎉</div>
+            <h2>Time's Up!</h2>
+            <p class="completed-message" id="completedMessage">Your event has arrived!</p>
+            <button class="btn-new" id="newBtn">Create New Timer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Quote & Joke Fetcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">🌐 API Quote & Joke Fetcher</h1>
+        <p class="subtitle">Fetching inspiration from around the internet!</p>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="quotes">💭 Quotes</button>
+            <button class="tab-btn" data-tab="jokes">😄 Jokes</button>
+            <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
+        </div>
+
+        <!-- Quotes Tab -->
+        <div class="tab-content active" id="quotes">
+            <div class="card quote-card">
+                <div class="card-header">
+                    <div class="quote-icon">"</div>
+                    <div class="api-badge" id="quoteApiSource">Source: API</div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="loading-spinner" id="quoteLoader">
+                    <div class="spinner"></div>
+                    <p>Fetching quote...</p>
+                </div>
+
+                <!-- Error Message -->
+                <div class="error-message" id="quoteError" style="display: none;">
+                    <span class="error-icon">⚠️</span>
+                    <p class="error-text">Failed to fetch quote</p>
+                    <button class="btn-retry" onclick="retryQuote()">Retry</button>
+                </div>
+
+                <!-- Quote Display -->
+                <div class="quote-display" id="quoteDisplay">
+                    <p class="quote-text" id="quoteText">Click the button below to get inspired!</p>
+                    <p class="quote-author" id="quoteAuthor">- Author</p>
+                    <div class="quote-tags" id="quoteTags"></div>
+                </div>
+                
+                <div class="actions">
+                    <button class="btn-generate" id="newQuoteBtn">
+                        <span class="btn-icon-left">🔄</span>
+                        New Quote
+                    </button>
+                    <div class="action-buttons">
+                        <button class="btn-icon" id="copyQuoteBtn" title="Copy quote">📋</button>
+                        <button class="btn-icon" id="tweetQuoteBtn" title="Share on Twitter">🐦</button>
+                        <button class="btn-icon" id="favoriteQuoteBtn" title="Add to favorites">❤️</button>
+                        <button class="btn-icon" id="speakQuoteBtn" title="Speak quote">🔊</button>
+                    </div>
+                </div>
+
+                <div class="api-selector">
+                    <label for="quoteApiSelect">Quote API:</label>
+                    <select id="quoteApiSelect">
+                        <option value="quotable">Quotable.io (Default)</option>
+                        <option value="zenquotes">ZenQuotes.io</option>
+                        <option value="local">Local Storage (Offline)</option>
+                        <option value="random">Random Selection</option>
+                    </select>
+                </div>
+
+                <div class="stats" id="quoteStats">
+                    <div class="stat-item">
+                        <span class="stat-value" id="quotesLoaded">0</span>
+                        <span class="stat-label">Loaded</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="cacheSize">0</span>
+                        <span class="stat-label">Cached</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-value" id="favoriteCount">0</span>
+                        <span class="stat-label">Favorites</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="favorites-section">
+                <h3>❤️ Favorite Quotes</h3>
+                <div class="favorites-list" id="favoriteQuotes">
+                    <p class="empty-favorites">No favorites yet. Click the heart icon to add quotes!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jokes Tab -->
+        <div class="tab-content" id="jokes">
+            <div class="card joke-card">
+                <div class="card-header">
+                    <div class="joke-icon">😄</div>
+                    <div class="api-badge" id="jokeApiSource">Source: API</div>
+                </div>
+
+                <!-- Loading Spinner -->
+                <div class="loading-spinner" id="jokeLoader">
+                    <div class="spinner"></div>
+                    <p>Fetching joke...</p>
+                </div>
+
+                <!-- Error Message -->
+                <div class="error-message" id="jokeError" style="display: none;">
+                    <span class="error-icon">⚠️</span>
+                    <p class="error-text">Failed to fetch joke</p>
+                    <button class="btn-retry" onclick="retryJoke()">Retry</button>
+                </div>
+
+                <!-- Joke Display -->
+                <div class="joke-display" id="jokeDisplay">
+                    <p class="joke-text" id="jokeText">Ready to laugh? Click the button below!</p>
+                    <p class="joke-punchline" id="jokePunchline" style="display: none;"></p>
+                    <div class="joke-info" id="jokeInfo"></div>
+                </div>
+                
+                <div class="actions">
+                    <button class="btn-generate" id="newJokeBtn">
+                        <span class="btn-icon-left">🎲</span>
+                        New Joke
+                    </button>
+                    <div class="action-buttons">
+                        <button class="btn-icon" id="copyJokeBtn" title="Copy joke">📋</button>
+                        <button class="btn-icon" id="tweetJokeBtn" title="Share on Twitter">🐦</button>
+                        <button class="btn-icon" id="speakJokeBtn" title="Speak joke">🔊</button>
+                    </div>
+                </div>
+
+                <div class="api-selector">
+                    <label for="jokeApiSelect">Joke API:</label>
+                    <select id="jokeApiSelect">
+                        <option value="official">Official Joke API</option>
+                        <option value="jokeapi">JokeAPI</option>
+                        <option value="dadjokes">icanhazdadjoke</option>
+                        <option value="local">Local Storage (Offline)</option>
+                    </select>
+                </div>
+
+                <div class="joke-rating" id="jokeRating">
+                    <p>Rate this joke:</p>
+                    <div class="stars">
+                        <button class="star" data-rating="1">⭐</button>
+                        <button class="star" data-rating="2">⭐</button>
+                        <button class="star" data-rating="3">⭐</button>
+                        <button class="star" data-rating="4">⭐</button>
+                        <button class="star" data-rating="5">⭐</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div class="tab-content" id="settings">
+            <div class="card settings-card">
+                <h2>⚙️ Settings & Configuration</h2>
+
+                <div class="setting-group">
+                    <h3>🌐 API Configuration</h3>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="enableCache" checked>
+                            Enable caching (faster, uses localStorage)
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="autoFetch" checked>
+                            Auto-fetch on page load
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            Cache expiry (minutes):
+                            <input type="number" id="cacheExpiry" min="1" max="1440" value="60">
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <h3>🎨 Display Options</h3>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="showTags" checked>
+                            Show quote tags/categories
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="showSource" checked>
+                            Show API source badge
+                        </label>
+                    </div>
+                    <div class="setting-item">
+                        <label>
+                            <input type="checkbox" id="enableSpeech">
+                            Enable text-to-speech
+                        </label>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <h3>📊 Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalQuotesFetched">0</div>
+                            <div class="stat-description">Quotes Fetched</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalJokesFetched">0</div>
+                            <div class="stat-description">Jokes Fetched</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="totalErrors">0</div>
+                            <div class="stat-description">API Errors</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="cacheHits">0</div>
+                            <div class="stat-description">Cache Hits</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-group">
+                    <h3>🗑️ Data Management</h3>
+                    <button class="btn-danger" onclick="clearCache()">Clear Cache</button>
+                    <button class="btn-danger" onclick="clearFavorites()">Clear Favorites</button>
+                    <button class="btn-danger" onclick="resetStats()">Reset Statistics</button>
+                    <button class="btn-secondary" onclick="exportData()">Export Data</button>
+                </div>
+
+                <div class="setting-group">
+                    <h3>ℹ️ API Information</h3>
+                    <div class="api-info">
+                        <h4>Quote APIs:</h4>
+                        <ul>
+                            <li><strong>Quotable.io:</strong> Large collection, well-formatted</li>
+                            <li><strong>ZenQuotes.io:</strong> Inspirational quotes with tags</li>
+                        </ul>
+                        <h4>Joke APIs:</h4>
+                        <ul>
+                            <li><strong>Official Joke API:</strong> Clean, family-friendly jokes</li>
+                            <li><strong>JokeAPI:</strong> Various categories, safe mode</li>
+                            <li><strong>icanhazdadjoke:</strong> Dad jokes collection</li>
+                        </ul>
+                        <p class="api-note">💡 All APIs are free and don't require API keys!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

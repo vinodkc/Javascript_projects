@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Guessing Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🎯 Number Guessing Game</h1>
+            <p class="subtitle">Can you guess the secret number?</p>
+        </header>
+
+        <!-- Game Settings -->
+        <div class="settings-panel" id="settingsPanel">
+            <h2>Game Settings</h2>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label for="difficulty">Difficulty:</label>
+                    <select id="difficulty">
+                        <option value="easy">Easy (1-50)</option>
+                        <option value="medium" selected>Medium (1-100)</option>
+                        <option value="hard">Hard (1-500)</option>
+                        <option value="expert">Expert (1-1000)</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="maxAttempts">Max Attempts:</label>
+                    <select id="maxAttempts">
+                        <option value="5">5 Attempts</option>
+                        <option value="7">7 Attempts</option>
+                        <option value="10" selected>10 Attempts</option>
+                        <option value="15">15 Attempts</option>
+                        <option value="unlimited">Unlimited</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="startGameBtn">Start New Game</button>
+        </div>
+
+        <!-- Game Area -->
+        <div class="game-area" id="gameArea" style="display: none;">
+            <div class="game-info">
+                <div class="info-card">
+                    <span class="info-label">Range:</span>
+                    <span class="info-value" id="rangeDisplay">1 - 100</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Attempts Left:</span>
+                    <span class="info-value" id="attemptsLeft">10</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Score:</span>
+                    <span class="info-value" id="scoreDisplay">0</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="input-section">
+                <input 
+                    type="number" 
+                    id="guessInput" 
+                    placeholder="Enter your guess..."
+                    min="1"
+                    autocomplete="off">
+                <button class="btn btn-guess" id="guessBtn">Guess!</button>
+            </div>
+
+            <!-- Feedback -->
+            <div class="feedback" id="feedback">
+                <p class="feedback-text" id="feedbackText">Enter a number and click Guess!</p>
+                <div class="hint-container" id="hintContainer" style="display: none;">
+                    <span class="hint-badge">💡 Hint</span>
+                    <p class="hint-text" id="hintText"></p>
+                </div>
+            </div>
+
+            <!-- Temperature Indicator -->
+            <div class="temperature-indicator">
+                <div class="temp-item">
+                    <span class="temp-icon">🧊</span>
+                    <span class="temp-label">Ice Cold</span>
+                </div>
+                <div class="temp-item">
+                    <span class="temp-icon">❄️</span>
+                    <span class="temp-label">Cold</span>
+                </div>
+                <div class="temp-item">
+                    <span class="temp-icon">🌡️</span>
+                    <span class="temp-label">Warm</span>
+                </div>
+                <div class="temp-item active" id="currentTemp">
+                    <span class="temp-icon">🔥</span>
+                    <span class="temp-label">Hot</span>
+                </div>
+                <div class="temp-item">
+                    <span class="temp-icon">💥</span>
+                    <span class="temp-label">On Fire!</span>
+                </div>
+            </div>
+
+            <!-- Guess History -->
+            <div class="history-section">
+                <h3>Your Guesses</h3>
+                <div class="guess-history" id="guessHistory"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-secondary" id="hintBtn">Get Hint (-10 points)</button>
+                <button class="btn btn-secondary" id="newGameBtn">New Game</button>
+            </div>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-section">
+            <h2>Statistics</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🎮</div>
+                    <div class="stat-value" id="gamesPlayed">0</div>
+                    <div class="stat-label">Games Played</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-value" id="gamesWon">0</div>
+                    <div class="stat-label">Games Won</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-value" id="winRate">0%</div>
+                    <div class="stat-label">Win Rate</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-value" id="bestScore">0</div>
+                    <div class="stat-label">Best Score</div>
+                </div>
+            </div>
+            <button class="btn btn-secondary" id="resetStatsBtn">Reset Statistics</button>
+        </div>
+
+        <!-- Game Over Modal -->
+        <div class="modal" id="gameOverModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">🎉 You Won!</h2>
+                </div>
+                <div class="modal-body">
+                    <p class="modal-message" id="modalMessage"></p>
+                    <div class="modal-stats">
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Secret Number:</span>
+                            <span class="modal-stat-value" id="modalSecretNumber">42</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Attempts Used:</span>
+                            <span class="modal-stat-value" id="modalAttempts">5</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-label">Score Earned:</span>
+                            <span class="modal-stat-value" id="modalScore">100</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+                    <button class="btn btn-secondary" id="closeModalBtn">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>🎓 Built for learning JavaScript • Game logic, random numbers, and DOM manipulation</p>
+        </footer>
+    </div>
+
+    <!-- Sound effects (optional) -->
+    <audio id="correctSound" preload="auto">
+        <!-- Add sound file if available -->
+    </audio>
+    <audio id="wrongSound" preload="auto">
+        <!-- Add sound file if available -->
+    </audio>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

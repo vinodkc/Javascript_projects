@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22 JavaScript Projects - Learning Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .subtitle {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 20px auto;
+            line-height: 1.6;
+        }
+
+        /* Search and Filter */
+        .controls {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border: 2px solid #e5e7eb;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: #6b7280;
+        }
+
+        .filter-btn:hover {
+            border-color: #667eea;
+            color: #667eea;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-color: transparent;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.95rem;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border-left: 5px solid #667eea;
+        }
+
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .info-box p {
+            color: #6b7280;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .info-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .info-link {
+            padding: 8px 16px;
+            background: #f3f4f6;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .info-link:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        kbd {
+            background: #374151;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.9em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        code {
+            background: #f3f4f6;
+            color: #667eea;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-number {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .project-icon {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+            padding: 50px 20px 30px;
+            text-align: center;
+            font-size: 4rem;
+        }
+
+        .project-content {
+            padding: 25px;
+            flex: 1;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 10px;
+        }
+
+        .project-description {
+            color: #6b7280;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .tag {
+            padding: 5px 12px;
+            background: #f3f4f6;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .action-link {
+            flex: 1;
+            padding: 8px 12px;
+            background: #f3f4f6;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .action-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .action-link.primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            grid-column: 1 / -1;
+        }
+
+        .action-link.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .source-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tag.new {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+        }
+
+        .tag.advanced {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+        }
+
+        .tag.api {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+        }
+
+        /* Category Headers */
+        .category-section {
+            margin-bottom: 50px;
+        }
+
+        .category-header {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .category-header h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .category-header p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        footer h3 {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        footer p {
+            color: #6b7280;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .footer-link:hover {
+            color: #764ba2;
+            transform: translateY(-2px);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-card {
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls {
+                flex-direction: column;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .no-results-icon {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .no-results h3 {
+            color: #1f2937;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .no-results p {
+            color: #6b7280;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🚀 22 JavaScript Projects</h1>
+            <p class="subtitle">A Comprehensive Learning Collection</p>
+            <p class="description">
+                Master JavaScript, HTML & CSS through hands-on projects. From basic calculators to advanced algorithms,
+                API integration, and game development. Each project includes complete source code and detailed documentation.
+            </p>
+            <div style="margin-top: 20px;">
+                <img src="https://visitor-badge.laobi.icu/badge?page_id=vinodkc.Javascript_projects" alt="Visitor Count" style="display: inline-block;">
+                <img src="https://img.shields.io/github/stars/vinodkc/Javascript_projects?style=social" alt="GitHub Stars" style="display: inline-block; margin-left: 10px;">
+                <img src="https://img.shields.io/github/forks/vinodkc/Javascript_projects?style=social" alt="GitHub Forks" style="display: inline-block; margin-left: 10px;">
+            </div>
+        </header>
+
+        <!-- Stats Bar -->
+        <div class="stats-bar">
+            <a href="https://github.com/vinodkc/Javascript_projects" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: inherit;">
+                <div class="stat-card">
+                    <span class="stat-icon">📚</span>
+                    <div class="stat-value">22</div>
+                    <div class="stat-label">Total Projects</div>
+                </div>
+            </a>
+            <div class="stat-card">
+                <span class="stat-icon">💻</span>
+                <div class="stat-value">50K+</div>
+                <div class="stat-label">Lines of Code</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">🎯</span>
+                <div class="stat-value">100+</div>
+                <div class="stat-label">Concepts Covered</div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">⭐</span>
+                <div class="stat-value">Beginner to Advanced</div>
+                <div class="stat-label">Difficulty Range</div>
+            </div>
+        </div>
+
+        <!-- Info Box: How to Access Source Code -->
+        <div class="info-box">
+            <h3>📂 How to Access Source Code</h3>
+            <p><strong>Each project folder contains 4 files you can view/edit:</strong></p>
+            <div class="info-links">
+                <span class="info-link">📄 index.html - HTML structure</span>
+                <span class="info-link">🎨 style.css - CSS styling</span>
+                <span class="info-link">⚡ script.js - JavaScript logic</span>
+                <span class="info-link">📖 README.md - Documentation</span>
+            </div>
+            <p style="margin-top: 15px;">
+                <strong>3 Ways to View Source Code:</strong><br>
+                1️⃣ <strong>File Explorer:</strong> Navigate to project folders (e.g., <code>01-calculator/</code>) and open files in your code editor<br>
+                2️⃣ <strong>Browser DevTools:</strong> After opening a project, press <kbd>F12</kbd> or right-click → "Inspect" → "Sources" tab<br>
+                3️⃣ <strong>Direct Links:</strong> Click project below, then manually change URL to view files (e.g., add <code>/style.css</code> or <code>/script.js</code>)
+            </p>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="🔍 Search projects...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="beginner">Beginner</button>
+                <button class="filter-btn" data-filter="intermediate">Intermediate</button>
+                <button class="filter-btn" data-filter="advanced">Advanced</button>
+                <button class="filter-btn" data-filter="api">API Integration</button>
+            </div>
+        </div>
+
+        <!-- Projects Container -->
+        <div id="projectsContainer">
+            <!-- Beginner Projects -->
+            <div class="category-section" data-category="beginner">
+                <div class="category-header">
+                    <h2>🌱 Beginner Projects (1-6)</h2>
+                    <p>Start here! Learn DOM manipulation, events, and basic JavaScript</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" data-level="beginner">
+                        <div class="project-number">1</div>
+                        <div class="project-icon">🔢</div>
+                        <div class="project-content">
+                            <div class="project-title">Calculator</div>
+                            <div class="project-description">Basic operations with keyboard support, clear/reset buttons, and evaluation logic.</div>
+                            <div class="project-tags">
+                                <span class="tag">DOM</span>
+                                <span class="tag">Events</span>
+                                <span class="tag">Math</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="01-calculator/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="01-calculator/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="01-calculator/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="01-calculator/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="01-calculator/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="beginner">
+                        <div class="project-number">2</div>
+                        <div class="project-icon">⏰</div>
+                        <div class="project-content">
+                            <div class="project-title">Digital Clock & Stopwatch</div>
+                            <div class="project-description">Live time display with stopwatch, lap times, and interval management.</div>
+                            <div class="project-tags">
+                                <span class="tag">Date</span>
+                                <span class="tag">Intervals</span>
+                                <span class="tag">Time</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="02-digital-clock-stopwatch/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="02-digital-clock-stopwatch/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="02-digital-clock-stopwatch/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="02-digital-clock-stopwatch/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="02-digital-clock-stopwatch/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="beginner">
+                        <div class="project-number">3</div>
+                        <div class="project-icon">✅</div>
+                        <div class="project-content">
+                            <div class="project-title">To-Do List App</div>
+                            <div class="project-description">Add, edit, delete tasks with localStorage persistence and completion tracking.</div>
+                            <div class="project-tags">
+                                <span class="tag">localStorage</span>
+                                <span class="tag">CRUD</span>
+                                <span class="tag">Arrays</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="03-todo-list/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="03-todo-list/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="03-todo-list/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="03-todo-list/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="03-todo-list/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="beginner">
+                        <div class="project-number">4</div>
+                        <div class="project-icon">💵</div>
+                        <div class="project-content">
+                            <div class="project-title">Tip & Bill Splitter</div>
+                            <div class="project-description">Calculate tips and split bills with different percentages and party sizes.</div>
+                            <div class="project-tags">
+                                <span class="tag">Forms</span>
+                                <span class="tag">Validation</span>
+                                <span class="tag">Math</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="04-tip-calculator/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="04-tip-calculator/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="04-tip-calculator/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="04-tip-calculator/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="04-tip-calculator/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="beginner">
+                        <div class="project-number">5</div>
+                        <div class="project-icon">🏋️</div>
+                        <div class="project-content">
+                            <div class="project-title">BMI & Age Calculator</div>
+                            <div class="project-description">Calculate BMI with classification and age from birthdate with leap year handling.</div>
+                            <div class="project-tags">
+                                <span class="tag">Date</span>
+                                <span class="tag">Formulas</span>
+                                <span class="tag">Validation</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="05-bmi-age-calculator/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="05-bmi-age-calculator/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="05-bmi-age-calculator/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="05-bmi-age-calculator/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="05-bmi-age-calculator/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="beginner">
+                        <div class="project-number">6</div>
+                        <div class="project-icon">🔤</div>
+                        <div class="project-content">
+                            <div class="project-title">Palindrome & Anagram Checker</div>
+                            <div class="project-description">String manipulation with multiple algorithms and performance comparison.</div>
+                            <div class="project-tags">
+                                <span class="tag">Strings</span>
+                                <span class="tag">Algorithms</span>
+                                <span class="tag">Regex</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="06-palindrome-anagram-checker/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="06-palindrome-anagram-checker/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="06-palindrome-anagram-checker/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="06-palindrome-anagram-checker/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="06-palindrome-anagram-checker/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intermediate Projects -->
+            <div class="category-section" data-category="intermediate">
+                <div class="category-header">
+                    <h2>🌿 Intermediate Projects (7-12)</h2>
+                    <p>Level up with form validation, array methods, and UI components</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" data-level="intermediate">
+                        <div class="project-number">7</div>
+                        <div class="project-icon">🔐</div>
+                        <div class="project-content">
+                            <div class="project-title">Password Generator & Strength Checker</div>
+                            <div class="project-description">Generate secure passwords with customizable options and real-time strength analysis.</div>
+                            <div class="project-tags">
+                                <span class="tag">Security</span>
+                                <span class="tag">Random</span>
+                                <span class="tag">Regex</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="07-password-generator/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="07-password-generator/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="07-password-generator/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="07-password-generator/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="07-password-generator/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="intermediate">
+                        <div class="project-number">8</div>
+                        <div class="project-icon">📝</div>
+                        <div class="project-content">
+                            <div class="project-title">Word & Character Counter</div>
+                            <div class="project-description">Real-time text analysis with word/character counts, limits, and statistics.</div>
+                            <div class="project-tags">
+                                <span class="tag">Strings</span>
+                                <span class="tag">Regex</span>
+                                <span class="tag">Events</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="08-word-counter/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="08-word-counter/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="08-word-counter/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="08-word-counter/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="08-word-counter/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="intermediate">
+                        <div class="project-number">9</div>
+                        <div class="project-icon">❓</div>
+                        <div class="project-content">
+                            <div class="project-title">Quiz App</div>
+                            <div class="project-description">Multiple-choice quiz with scoring, timer, progress tracking, and results summary.</div>
+                            <div class="project-tags">
+                                <span class="tag">Arrays</span>
+                                <span class="tag">Objects</span>
+                                <span class="tag">Logic</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="09-quiz-app/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="09-quiz-app/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="09-quiz-app/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="09-quiz-app/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="09-quiz-app/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="intermediate">
+                        <div class="project-number">10</div>
+                        <div class="project-icon">💭</div>
+                        <div class="project-content">
+                            <div class="project-title">Random Quote / Joke Generator</div>
+                            <div class="project-description">Display random quotes and jokes from local arrays with sharing functionality.</div>
+                            <div class="project-tags">
+                                <span class="tag">Arrays</span>
+                                <span class="tag">Random</span>
+                                <span class="tag">UI</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="10-quote-generator/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="10-quote-generator/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="10-quote-generator/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="10-quote-generator/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="10-quote-generator/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="intermediate">
+                        <div class="project-number">11</div>
+                        <div class="project-icon">🎞️</div>
+                        <div class="project-content">
+                            <div class="project-title">Image Slider / Carousel</div>
+                            <div class="project-description">Image carousel with prev/next controls, indicators, auto-play, and transitions.</div>
+                            <div class="project-tags">
+                                <span class="tag">DOM</span>
+                                <span class="tag">Animations</span>
+                                <span class="tag">Events</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="11-image-slider/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="11-image-slider/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="11-image-slider/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="11-image-slider/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="11-image-slider/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="intermediate">
+                        <div class="project-number">12</div>
+                        <div class="project-icon">🧩</div>
+                        <div class="project-content">
+                            <div class="project-title">Modal, Accordion & Tabs</div>
+                            <div class="project-description">Three essential UI patterns demonstrated with vanilla JavaScript.</div>
+                            <div class="project-tags">
+                                <span class="tag">UI Patterns</span>
+                                <span class="tag">Components</span>
+                                <span class="tag">CSS</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="12-ui-components/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="12-ui-components/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="12-ui-components/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="12-ui-components/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="12-ui-components/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Projects -->
+            <div class="category-section" data-category="advanced">
+                <div class="category-header">
+                    <h2>🌳 Advanced Projects (13-20)</h2>
+                    <p>Master advanced concepts, games, and data management</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" data-level="advanced">
+                        <div class="project-number">13</div>
+                        <div class="project-icon">🎨</div>
+                        <div class="project-content">
+                            <div class="project-title">Color Picker & Theme Switcher</div>
+                            <div class="project-description">Dynamic theme switching with color picker, custom colors, and persistence.</div>
+                            <div class="project-tags">
+                                <span class="tag">CSS Variables</span>
+                                <span class="tag">Colors</span>
+                                <span class="tag">localStorage</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="13-theme-switcher/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="13-theme-switcher/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="13-theme-switcher/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="13-theme-switcher/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="13-theme-switcher/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="advanced">
+                        <div class="project-number">14</div>
+                        <div class="project-icon">⏱️</div>
+                        <div class="project-content">
+                            <div class="project-title">Countdown Timer</div>
+                            <div class="project-description">Set target date/time with live countdown showing days, hours, minutes, seconds.</div>
+                            <div class="project-tags">
+                                <span class="tag">Date</span>
+                                <span class="tag">Intervals</span>
+                                <span class="tag">Math</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="14-countdown-timer/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="14-countdown-timer/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="14-countdown-timer/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="14-countdown-timer/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="14-countdown-timer/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="advanced">
+                        <div class="project-number">15</div>
+                        <div class="project-icon">🧭</div>
+                        <div class="project-content">
+                            <div class="project-title">Responsive Navbar</div>
+                            <div class="project-description">Mobile-friendly navbar with toggle menu, scroll behavior, and active section highlighting.</div>
+                            <div class="project-tags">
+                                <span class="tag">Responsive</span>
+                                <span class="tag">Scroll</span>
+                                <span class="tag">Mobile</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="15-responsive-navbar/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="15-responsive-navbar/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="15-responsive-navbar/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="15-responsive-navbar/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="15-responsive-navbar/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="advanced">
+                        <div class="project-number">16</div>
+                        <div class="project-icon">✂️</div>
+                        <div class="project-content">
+                            <div class="project-title">Rock-Paper-Scissors Game</div>
+                            <div class="project-description">Play against computer with score tracking, animations, and game logic.</div>
+                            <div class="project-tags">
+                                <span class="tag">Game</span>
+                                <span class="tag">Logic</span>
+                                <span class="tag">Random</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="16-rock-paper-scissors/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="16-rock-paper-scissors/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="16-rock-paper-scissors/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="16-rock-paper-scissors/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="16-rock-paper-scissors/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="advanced">
+                        <div class="project-number">17</div>
+                        <div class="project-icon">🎯</div>
+                        <div class="project-content">
+                            <div class="project-title">Number Guessing Game</div>
+                            <div class="project-description">Multi-difficulty guessing game with hints, temperature feedback, and statistics.</div>
+                            <div class="project-tags">
+                                <span class="tag">Game</span>
+                                <span class="tag">Random</span>
+                                <span class="tag">Algorithms</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="17-number-guessing/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="17-number-guessing/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="17-number-guessing/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="17-number-guessing/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="17-number-guessing/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="advanced">
+                        <div class="project-number">18</div>
+                        <div class="project-icon">🧠</div>
+                        <div class="project-content">
+                            <div class="project-title">Memory Card Game</div>
+                            <div class="project-description">Card matching game with Fisher-Yates shuffle, 3D flips, and leaderboard.</div>
+                            <div class="project-tags">
+                                <span class="tag">Game</span>
+                                <span class="tag">Algorithm</span>
+                                <span class="tag advanced">3D CSS</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="18-memory-game/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="18-memory-game/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="18-memory-game/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="18-memory-game/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="18-memory-game/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="advanced">
+                        <div class="project-number">19</div>
+                        <div class="project-icon">🌤️</div>
+                        <div class="project-content">
+                            <div class="project-title">Weather Widget</div>
+                            <div class="project-description">Real-time weather with OpenWeatherMap API, geolocation, and demo mode.</div>
+                            <div class="project-tags">
+                                <span class="tag api">API</span>
+                                <span class="tag advanced">Async/Await</span>
+                                <span class="tag">Fetch</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="19-weather-app/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="19-weather-app/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="19-weather-app/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="19-weather-app/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="19-weather-app/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="advanced">
+                        <div class="project-number">20</div>
+                        <div class="project-icon">💰</div>
+                        <div class="project-content">
+                            <div class="project-title">Expense Tracker</div>
+                            <div class="project-description">Full-featured finance manager with CRUD operations, filters, and data import/export.</div>
+                            <div class="project-tags">
+                                <span class="tag advanced">CRUD</span>
+                                <span class="tag">localStorage</span>
+                                <span class="tag">Data</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="20-expense-tracker/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="20-expense-tracker/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="20-expense-tracker/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="20-expense-tracker/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="20-expense-tracker/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Expert Projects -->
+            <div class="category-section" data-category="expert">
+                <div class="category-header">
+                    <h2>🚀 Expert Projects (21-22)</h2>
+                    <p>Advanced API integration and algorithms</p>
+                </div>
+                <div class="projects-grid">
+                    <div class="project-card" data-level="api">
+                        <div class="project-number">21</div>
+                        <div class="project-icon">🌐</div>
+                        <div class="project-content">
+                            <div class="project-title">API Quote & Joke Fetcher</div>
+                            <div class="project-description">Real API integration with multiple sources, caching, favorites, and text-to-speech.</div>
+                            <div class="project-tags">
+                                <span class="tag api">Multiple APIs</span>
+                                <span class="tag advanced">Caching</span>
+                                <span class="tag new">NEW</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="21-api-quote-fetcher/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="21-api-quote-fetcher/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="21-api-quote-fetcher/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="21-api-quote-fetcher/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="21-api-quote-fetcher/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" data-level="advanced">
+                        <div class="project-number">22</div>
+                        <div class="project-icon">⚖️</div>
+                        <div class="project-content">
+                            <div class="project-title">Text Diff Checker</div>
+                            <div class="project-description">Advanced LCS algorithm for text comparison with character-level diff and export.</div>
+                            <div class="project-tags">
+                                <span class="tag advanced">LCS Algorithm</span>
+                                <span class="tag">Dynamic Programming</span>
+                                <span class="tag new">NEW</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="22-text-diff-checker/index.html" class="action-link primary" target="_blank">▶️ View Demo</a>
+                                <div class="source-links">
+                                    <a href="22-text-diff-checker/index.html" class="action-link" target="_blank">📄 HTML</a>
+                                    <a href="22-text-diff-checker/style.css" class="action-link" target="_blank">🎨 CSS</a>
+                                    <a href="22-text-diff-checker/script.js" class="action-link" target="_blank">⚡ JS</a>
+                                    <a href="22-text-diff-checker/README.md" class="action-link" target="_blank">📖 Docs</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Results Message -->
+        <div class="no-results" id="noResults" style="display: none;">
+            <span class="no-results-icon">🔍</span>
+            <h3>No Projects Found</h3>
+            <p>Try adjusting your search or filter criteria</p>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <h3>🎓 Ready to Start Learning?</h3>
+            <p>Click any project to run it • Open project folders to view/edit source code</p>
+            <p>✅ Complete source code (HTML, CSS, JS) • 📖 Detailed documentation • 🎯 Hands-on learning • 💡 Best practices</p>
+            <div class="footer-links">
+                <a href="https://github.com/vinodkc/Javascript_projects" class="footer-link" target="_blank" rel="noopener noreferrer">⭐ GitHub Repository</a>
+                <a href="CONCEPTS_GUIDE.md" class="footer-link">📚 Concepts Guide</a>
+                <a href="README.md" class="footer-link">📖 Documentation</a>
+            </div>
+            <p style="margin-top: 25px; color: #9ca3af; font-size: 0.9rem;">
+                💻 Built with HTML, CSS & JavaScript • 🚀 From Basic to Advanced
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        // Search and Filter Functionality
+        const searchInput = document.getElementById('searchInput');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const noResults = document.getElementById('noResults');
+        const projectsContainer = document.getElementById('projectsContainer');
+
+        let currentFilter = 'all';
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            filterProjects(searchTerm, currentFilter);
+        });
+
+        // Filter buttons
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentFilter = btn.dataset.filter;
+                filterProjects(searchInput.value.toLowerCase(), currentFilter);
+            });
+        });
+
+        function filterProjects(searchTerm, filter) {
+            let visibleCount = 0;
+
+            projectCards.forEach(card => {
+                const title = card.querySelector('.project-title').textContent.toLowerCase();
+                const description = card.querySelector('.project-description').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.tag')).map(tag => tag.textContent.toLowerCase()).join(' ');
+                const level = card.dataset.level;
+
+                const matchesSearch = title.includes(searchTerm) || 
+                                     description.includes(searchTerm) || 
+                                     tags.includes(searchTerm);
+                
+                const matchesFilter = filter === 'all' || 
+                                     level === filter ||
+                                     (filter === 'api' && tags.includes('api'));
+
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            if (visibleCount === 0) {
+                projectsContainer.style.display = 'none';
+                noResults.style.display = 'block';
+            } else {
+                projectsContainer.style.display = 'block';
+                noResults.style.display = 'none';
+            }
+        }
+
+        // Add animation delay to cards
+        projectCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.05}s`;
+        });
+
+        console.log('🚀 JavaScript Projects Hub loaded!');
+        console.log(`📚 Total projects: ${projectCards.length}`);
+    </script>
+</body>
+</html>
+

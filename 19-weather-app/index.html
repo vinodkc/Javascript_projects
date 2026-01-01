@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Widget</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🌤️ Weather Widget</h1>
+            <p class="subtitle">Get real-time weather for any city</p>
+        </header>
+
+        <!-- API Key Setup (shown if no key) -->
+        <div class="api-setup" id="apiSetup">
+            <div class="setup-card">
+                <h2>🔑 API Key Setup</h2>
+                <p>To use this weather app, you need a free API key from OpenWeatherMap.</p>
+                
+                <div class="setup-steps">
+                    <div class="step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h3>Sign Up</h3>
+                            <p>Go to <a href="https://openweathermap.org/api" target="_blank">OpenWeatherMap.org</a> and create a free account</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h3>Get API Key</h3>
+                            <p>After signing up, find your API key in your account dashboard</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h3>Enter Below</h3>
+                            <p>Paste your API key and click Save</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="api-input-group">
+                    <input 
+                        type="text" 
+                        id="apiKeyInput" 
+                        placeholder="Enter your OpenWeatherMap API key..."
+                        autocomplete="off">
+                    <button class="btn btn-primary" id="saveApiKeyBtn">Save API Key</button>
+                </div>
+
+                <div class="demo-mode">
+                    <p><strong>Or try Demo Mode:</strong></p>
+                    <button class="btn btn-secondary" id="demoModeBtn">Use Demo Data</button>
+                    <p class="demo-note">Demo mode shows sample weather data without requiring an API key</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weather App -->
+        <div class="weather-app" id="weatherApp" style="display: none;">
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="cityInput" 
+                        placeholder="Enter city name (e.g., London, New York, Tokyo)..."
+                        autocomplete="off">
+                    <button class="btn btn-search" id="searchBtn">
+                        <span class="search-icon">🔍</span>
+                        Search
+                    </button>
+                </div>
+                <button class="btn btn-secondary btn-location" id="locationBtn">
+                    <span class="location-icon">📍</span>
+                    Use My Location
+                </button>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div class="loading" id="loading" style="display: none;">
+                <div class="spinner"></div>
+                <p>Fetching weather data...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div class="error-message" id="errorMessage" style="display: none;">
+                <span class="error-icon">⚠️</span>
+                <p id="errorText">Something went wrong!</p>
+            </div>
+
+            <!-- Weather Display -->
+            <div class="weather-display" id="weatherDisplay" style="display: none;">
+                <!-- Current Weather -->
+                <div class="current-weather">
+                    <div class="location-info">
+                        <h2 id="cityName">London</h2>
+                        <p id="countryName">United Kingdom</p>
+                        <p class="last-updated">Last updated: <span id="lastUpdated">--</span></p>
+                    </div>
+
+                    <div class="weather-main">
+                        <div class="weather-icon-container">
+                            <img id="weatherIcon" src="" alt="Weather Icon">
+                            <p id="weatherDescription">Clear Sky</p>
+                        </div>
+                        <div class="temperature-display">
+                            <span class="temperature" id="temperature">20</span>
+                            <span class="unit">°C</span>
+                        </div>
+                    </div>
+
+                    <div class="weather-details">
+                        <div class="detail-item">
+                            <span class="detail-icon">🌡️</span>
+                            <div class="detail-content">
+                                <p class="detail-label">Feels Like</p>
+                                <p class="detail-value" id="feelsLike">18°C</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💧</span>
+                            <div class="detail-content">
+                                <p class="detail-label">Humidity</p>
+                                <p class="detail-value" id="humidity">65%</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">💨</span>
+                            <div class="detail-content">
+                                <p class="detail-label">Wind Speed</p>
+                                <p class="detail-value" id="windSpeed">5 m/s</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">🧭</span>
+                            <div class="detail-content">
+                                <p class="detail-label">Pressure</p>
+                                <p class="detail-value" id="pressure">1013 hPa</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">👁️</span>
+                            <div class="detail-content">
+                                <p class="detail-label">Visibility</p>
+                                <p class="detail-value" id="visibility">10 km</p>
+                            </div>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-icon">☁️</span>
+                            <div class="detail-content">
+                                <p class="detail-label">Cloudiness</p>
+                                <p class="detail-value" id="cloudiness">20%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sun-times">
+                        <div class="sun-time">
+                            <span class="sun-icon">🌅</span>
+                            <div>
+                                <p class="sun-label">Sunrise</p>
+                                <p class="sun-value" id="sunrise">06:30 AM</p>
+                            </div>
+                        </div>
+                        <div class="sun-time">
+                            <span class="sun-icon">🌇</span>
+                            <div>
+                                <p class="sun-label">Sunset</p>
+                                <p class="sun-value" id="sunset">06:30 PM</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Searches -->
+                <div class="recent-searches">
+                    <h3>Recent Searches</h3>
+                    <div class="recent-list" id="recentList"></div>
+                </div>
+            </div>
+
+            <!-- Settings -->
+            <div class="settings-section">
+                <button class="btn btn-secondary" id="changeApiKeyBtn">Change API Key</button>
+                <button class="btn btn-secondary" id="clearHistoryBtn">Clear History</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>🎓 Built for learning JavaScript • Fetch API, async/await, and geolocation</p>
+            <p style="margin-top: 10px;">Weather data provided by <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a></p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

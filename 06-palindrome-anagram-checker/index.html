@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome & Anagram Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔤 String Analyzer</h1>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="palindrome">Palindrome Checker</button>
+            <button class="tab-btn" data-tab="anagram">Anagram Checker</button>
+        </div>
+
+        <div class="tab-content active" id="palindrome">
+            <div class="card">
+                <h2>Palindrome Checker</h2>
+                <p class="description">A palindrome reads the same forwards and backwards</p>
+                
+                <div class="input-group">
+                    <label for="palindromeInput">Enter Text</label>
+                    <input 
+                        type="text" 
+                        id="palindromeInput" 
+                        placeholder="e.g., A man a plan a canal Panama"
+                        maxlength="200"
+                    >
+                </div>
+
+                <button class="btn-check" id="checkPalindrome">Check Palindrome</button>
+
+                <div class="result-card hidden" id="palindromeResult">
+                    <div class="result-icon" id="palindromeIcon">✓</div>
+                    <div class="result-text" id="palindromeText">This is a palindrome!</div>
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Original:</span>
+                            <span class="detail-value" id="palindromeOriginal"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Normalized:</span>
+                            <span class="detail-value" id="palindromeNormalized"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Reversed:</span>
+                            <span class="detail-value" id="palindromeReversed"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="examples">
+                    <h3>Try these examples:</h3>
+                    <div class="example-chips">
+                        <button class="chip" data-example="racecar">racecar</button>
+                        <button class="chip" data-example="A man a plan a canal Panama">A man a plan a canal Panama</button>
+                        <button class="chip" data-example="Was it a car or a cat I saw">Was it a car or a cat I saw</button>
+                        <button class="chip" data-example="Madam">Madam</button>
+                        <button class="chip" data-example="hello">hello (not)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="anagram">
+            <div class="card">
+                <h2>Anagram Checker</h2>
+                <p class="description">Anagrams use the same letters rearranged</p>
+                
+                <div class="input-group">
+                    <label for="anagramInput1">First Word/Phrase</label>
+                    <input 
+                        type="text" 
+                        id="anagramInput1" 
+                        placeholder="e.g., listen"
+                        maxlength="200"
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="anagramInput2">Second Word/Phrase</label>
+                    <input 
+                        type="text" 
+                        id="anagramInput2" 
+                        placeholder="e.g., silent"
+                        maxlength="200"
+                    >
+                </div>
+
+                <button class="btn-check" id="checkAnagram">Check Anagram</button>
+
+                <div class="result-card hidden" id="anagramResult">
+                    <div class="result-icon" id="anagramIcon">✓</div>
+                    <div class="result-text" id="anagramText">These are anagrams!</div>
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <span class="detail-label">First (normalized):</span>
+                            <span class="detail-value" id="anagram1Normalized"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Second (normalized):</span>
+                            <span class="detail-value" id="anagram2Normalized"></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Letter Count:</span>
+                            <span class="detail-value" id="anagramLetters"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="examples">
+                    <h3>Try these examples:</h3>
+                    <div class="example-chips">
+                        <button class="chip" data-pair="listen,silent">listen & silent</button>
+                        <button class="chip" data-pair="dormitory,dirty room">dormitory & dirty room</button>
+                        <button class="chip" data-pair="astronomer,moon starer">astronomer & moon starer</button>
+                        <button class="chip" data-pair="elbow,below">elbow & below</button>
+                        <button class="chip" data-pair="hello,world">hello & world (not)</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

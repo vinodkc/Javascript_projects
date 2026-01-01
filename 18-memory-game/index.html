@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Card Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🧠 Memory Card Game</h1>
+            <p class="subtitle">Test your memory by matching pairs!</p>
+        </header>
+
+        <!-- Game Settings -->
+        <div class="settings-panel" id="settingsPanel">
+            <h2>Game Settings</h2>
+            <div class="settings-grid">
+                <div class="setting-item">
+                    <label for="difficulty">Difficulty:</label>
+                    <select id="difficulty">
+                        <option value="easy">Easy (12 cards - 6 pairs)</option>
+                        <option value="medium" selected>Medium (16 cards - 8 pairs)</option>
+                        <option value="hard">Hard (20 cards - 10 pairs)</option>
+                        <option value="expert">Expert (24 cards - 12 pairs)</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="theme">Theme:</label>
+                    <select id="theme">
+                        <option value="emojis" selected>Emojis 😊</option>
+                        <option value="animals">Animals 🐶</option>
+                        <option value="fruits">Fruits 🍎</option>
+                        <option value="numbers">Numbers 🔢</option>
+                    </select>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="startGameBtn">Start Game</button>
+        </div>
+
+        <!-- Game Area -->
+        <div class="game-area" id="gameArea" style="display: none;">
+            <!-- Game Stats -->
+            <div class="game-stats">
+                <div class="stat-item">
+                    <span class="stat-icon">⏱️</span>
+                    <span class="stat-label">Time:</span>
+                    <span class="stat-value" id="timer">00:00</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🔄</span>
+                    <span class="stat-label">Moves:</span>
+                    <span class="stat-value" id="moves">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">✓</span>
+                    <span class="stat-label">Pairs:</span>
+                    <span class="stat-value">
+                        <span id="pairsFound">0</span>/<span id="totalPairs">8</span>
+                    </span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-icon">🎯</span>
+                    <span class="stat-label">Accuracy:</span>
+                    <span class="stat-value" id="accuracy">100%</span>
+                </div>
+            </div>
+
+            <!-- Game Board -->
+            <div class="game-board" id="gameBoard"></div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-secondary" id="pauseBtn">⏸️ Pause</button>
+                <button class="btn btn-secondary" id="restartBtn">🔄 Restart</button>
+                <button class="btn btn-secondary" id="newGameBtn">🎮 New Game</button>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <h2>Your Best Times</h2>
+            <div class="leaderboard">
+                <div class="leaderboard-item header">
+                    <span class="rank">Rank</span>
+                    <span class="difficulty-col">Difficulty</span>
+                    <span class="time">Time</span>
+                    <span class="moves-col">Moves</span>
+                </div>
+                <div id="leaderboardList">
+                    <p class="no-records">No records yet. Play some games!</p>
+                </div>
+            </div>
+            <button class="btn btn-secondary" id="clearRecordsBtn">Clear Records</button>
+        </div>
+
+        <!-- Victory Modal -->
+        <div class="modal" id="victoryModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>🎉 Congratulations!</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="victory-animation">
+                        <div class="trophy">🏆</div>
+                        <div class="confetti">🎊</div>
+                    </div>
+                    <p class="modal-message">You've matched all pairs!</p>
+                    <div class="modal-stats">
+                        <div class="modal-stat">
+                            <span class="modal-stat-icon">⏱️</span>
+                            <span class="modal-stat-label">Time:</span>
+                            <span class="modal-stat-value" id="modalTime">00:00</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-icon">🔄</span>
+                            <span class="modal-stat-label">Moves:</span>
+                            <span class="modal-stat-value" id="modalMoves">0</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-icon">🎯</span>
+                            <span class="modal-stat-label">Accuracy:</span>
+                            <span class="modal-stat-value" id="modalAccuracy">100%</span>
+                        </div>
+                        <div class="modal-stat">
+                            <span class="modal-stat-icon">⭐</span>
+                            <span class="modal-stat-label">Stars:</span>
+                            <span class="modal-stat-value" id="modalStars">⭐⭐⭐</span>
+                        </div>
+                    </div>
+                    <div class="new-record" id="newRecordBadge" style="display: none;">
+                        <span class="record-icon">🆕</span>
+                        <span class="record-text">New Best Time!</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" id="playAgainBtn">Play Again</button>
+                    <button class="btn btn-secondary" id="closeModalBtn">Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pause Overlay -->
+        <div class="pause-overlay" id="pauseOverlay" style="display: none;">
+            <div class="pause-content">
+                <h2>⏸️ Game Paused</h2>
+                <p>Take a break!</p>
+                <button class="btn btn-primary" id="resumeBtn">Resume Game</button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>🎓 Built for learning JavaScript • Array shuffling, timers, and game logic</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Components Demo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 UI Components Demo</h1>
+        <p class="subtitle">Showcase of Modal, Accordion, and Tabs patterns</p>
+
+        <section class="component-section">
+            <h2>📦 Modal Windows</h2>
+            <p>Click the buttons below to open different modal windows</p>
+            <div class="button-group">
+                <button class="btn" id="openModal1">Open Basic Modal</button>
+                <button class="btn" id="openModal2">Open Form Modal</button>
+                <button class="btn" id="openModal3">Open Confirmation Modal</button>
+            </div>
+        </section>
+
+        <section class="component-section">
+            <h2>🎵 Accordion</h2>
+            <p>Click on sections to expand/collapse content</p>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What is JavaScript?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. It's one of the core technologies of the World Wide Web, alongside HTML and CSS.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What are the key features of JavaScript?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>JavaScript features include dynamic typing, first-class functions, prototype-based object orientation, and event-driven programming. It supports functional, imperative, and object-oriented programming styles.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>How do you use JavaScript?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>JavaScript can be embedded directly in HTML using script tags, or included from external files. It can manipulate the DOM, handle events, make API calls, and create dynamic, interactive web applications.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        <span>What are popular JavaScript frameworks?</span>
+                        <span class="accordion-icon">+</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Popular JavaScript frameworks and libraries include React, Vue.js, Angular, Svelte for frontend development, and Node.js, Express for backend development. Each has its own strengths and use cases.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="component-section">
+            <h2>📑 Tabs</h2>
+            <p>Switch between different content panels</p>
+            <div class="tabs-container">
+                <div class="tabs-nav">
+                    <button class="tab-button active" data-tab="tab1">HTML</button>
+                    <button class="tab-button" data-tab="tab2">CSS</button>
+                    <button class="tab-button" data-tab="tab3">JavaScript</button>
+                    <button class="tab-button" data-tab="tab4">Resources</button>
+                </div>
+
+                <div class="tabs-content">
+                    <div class="tab-panel active" id="tab1">
+                        <h3>HTML (HyperText Markup Language)</h3>
+                        <p>HTML is the standard markup language for creating web pages. It describes the structure of a web page semantically and originally included cues for the appearance of the document.</p>
+                        <ul>
+                            <li>Defines the structure and content</li>
+                            <li>Uses tags and elements</li>
+                            <li>Forms the foundation of web pages</li>
+                            <li>Semantic HTML improves accessibility</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-panel" id="tab2">
+                        <h3>CSS (Cascading Style Sheets)</h3>
+                        <p>CSS is a style sheet language used for describing the presentation of a document written in HTML or XML. It enables the separation of presentation and content.</p>
+                        <ul>
+                            <li>Controls layout, colors, and fonts</li>
+                            <li>Enables responsive design</li>
+                            <li>Supports animations and transitions</li>
+                            <li>Uses selectors to target elements</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-panel" id="tab3">
+                        <h3>JavaScript</h3>
+                        <p>JavaScript is a programming language that enables interactive web pages. It's an essential part of web applications, and the vast majority of websites use it for client-side page behavior.</p>
+                        <ul>
+                            <li>Adds interactivity to web pages</li>
+                            <li>Manipulates the DOM</li>
+                            <li>Handles user events</li>
+                            <li>Makes asynchronous requests</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-panel" id="tab4">
+                        <h3>Learning Resources</h3>
+                        <p>Here are some excellent resources to continue your web development journey:</p>
+                        <ul>
+                            <li>MDN Web Docs - Comprehensive documentation</li>
+                            <li>freeCodeCamp - Free interactive courses</li>
+                            <li>JavaScript.info - Modern JavaScript tutorial</li>
+                            <li>CSS-Tricks - CSS tips and tricks</li>
+                            <li>Can I Use - Browser compatibility tables</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="modal" id="modal1">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Basic Modal</h2>
+            <p>This is a simple modal dialog. It overlays the page content and can be dismissed by clicking the X button, clicking outside, or pressing Escape.</p>
+            <p>Modals are useful for displaying important information, forms, or confirmations without navigating away from the current page.</p>
+            <button class="btn modal-btn">Got it!</button>
+        </div>
+    </div>
+
+    <div class="modal" id="modal2">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <h2>Form Modal</h2>
+            <form class="modal-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" rows="4" placeholder="Your message"></textarea>
+                </div>
+                <button type="submit" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="modal3">
+        <div class="modal-content modal-small">
+            <button class="modal-close">&times;</button>
+            <h2>⚠️ Confirmation</h2>
+            <p>Are you sure you want to proceed with this action? This cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn btn-danger">Confirm</button>
+                <button class="btn btn-secondary modal-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

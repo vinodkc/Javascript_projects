@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Generator & Strength Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Password Tool</h1>
+        
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="generator">Generator</button>
+            <button class="tab-btn" data-tab="checker">Strength Checker</button>
+        </div>
+
+        <div class="tab-content active" id="generator">
+            <div class="card">
+                <h2>Password Generator</h2>
+                
+                <div class="password-display">
+                    <input 
+                        type="text" 
+                        id="generatedPassword" 
+                        readonly 
+                        placeholder="Generated password will appear here"
+                    >
+                    <button class="btn-icon" id="copyPassword" title="Copy to clipboard">
+                        📋
+                    </button>
+                </div>
+
+                <div class="options">
+                    <div class="option-row">
+                        <label for="passwordLength">Password Length: <span id="lengthValue">16</span></label>
+                        <input 
+                            type="range" 
+                            id="passwordLength" 
+                            min="4" 
+                            max="32" 
+                            value="16"
+                        >
+                    </div>
+
+                    <div class="option-row checkbox-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeUppercase" checked>
+                            <span>Uppercase (A-Z)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-row checkbox-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeLowercase" checked>
+                            <span>Lowercase (a-z)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-row checkbox-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeNumbers" checked>
+                            <span>Numbers (0-9)</span>
+                        </label>
+                    </div>
+
+                    <div class="option-row checkbox-row">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="includeSymbols" checked>
+                            <span>Symbols (!@#$%^&*)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button class="btn-generate" id="generateBtn">Generate Password</button>
+
+                <div class="generated-strength hidden" id="generatedStrength">
+                    <div class="strength-label">Password Strength:</div>
+                    <div class="strength-bar-container">
+                        <div class="strength-bar" id="genStrengthBar"></div>
+                    </div>
+                    <div class="strength-text" id="genStrengthText">Strong</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="checker">
+            <div class="card">
+                <h2>Password Strength Checker</h2>
+                
+                <div class="input-group">
+                    <label for="passwordInput">Enter Password to Check</label>
+                    <div class="password-input-wrapper">
+                        <input 
+                            type="password" 
+                            id="passwordInput" 
+                            placeholder="Enter your password"
+                        >
+                        <button class="btn-toggle" id="togglePassword" title="Show/Hide password">
+                            👁️
+                        </button>
+                    </div>
+                </div>
+
+                <div class="strength-result hidden" id="strengthResult">
+                    <div class="strength-score">
+                        <div class="score-circle" id="scoreCircle">
+                            <span id="scoreValue">0</span>
+                            <small>/100</small>
+                        </div>
+                        <div class="score-label" id="scoreLabel">Weak</div>
+                    </div>
+
+                    <div class="strength-bar-container">
+                        <div class="strength-bar" id="strengthBar"></div>
+                    </div>
+
+                    <div class="criteria-list">
+                        <div class="criterion" id="criterion1">
+                            <span class="criterion-icon">○</span>
+                            <span class="criterion-text">At least 8 characters</span>
+                        </div>
+                        <div class="criterion" id="criterion2">
+                            <span class="criterion-icon">○</span>
+                            <span class="criterion-text">Contains uppercase letter</span>
+                        </div>
+                        <div class="criterion" id="criterion3">
+                            <span class="criterion-icon">○</span>
+                            <span class="criterion-text">Contains lowercase letter</span>
+                        </div>
+                        <div class="criterion" id="criterion4">
+                            <span class="criterion-icon">○</span>
+                            <span class="criterion-text">Contains number</span>
+                        </div>
+                        <div class="criterion" id="criterion5">
+                            <span class="criterion-icon">○</span>
+                            <span class="criterion-text">Contains special character</span>
+                        </div>
+                    </div>
+
+                    <div class="feedback" id="feedback"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider / Carousel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🖼️ Image Carousel</h1>
+        
+        <div class="slider-container">
+            <div class="slider" id="slider">
+                <div class="slide active">
+                    <div class="slide-content" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                        <h2>Slide 1</h2>
+                        <p>Beautiful gradient backgrounds</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                        <h2>Slide 2</h2>
+                        <p>Smooth transitions and animations</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                        <h2>Slide 3</h2>
+                        <p>Auto-play functionality</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                        <h2>Slide 4</h2>
+                        <p>Previous and next controls</p>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="slide-content" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                        <h2>Slide 5</h2>
+                        <p>Click indicators to jump to any slide</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="slider-btn prev" id="prevBtn">
+                <span>‹</span>
+            </button>
+            <button class="slider-btn next" id="nextBtn">
+                <span>›</span>
+            </button>
+
+            <div class="slider-indicators" id="indicators"></div>
+        </div>
+
+        <div class="slider-controls">
+            <button class="control-btn" id="playPauseBtn">⏸️ Pause</button>
+            <div class="speed-control">
+                <label for="speedControl">Speed:</label>
+                <select id="speedControl">
+                    <option value="5000">Slow (5s)</option>
+                    <option value="3000" selected>Normal (3s)</option>
+                    <option value="2000">Fast (2s)</option>
+                    <option value="1000">Very Fast (1s)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="slider-info">
+            <div class="info-item">
+                <span class="info-label">Current Slide:</span>
+                <span class="info-value" id="currentSlide">1</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Total Slides:</span>
+                <span class="info-value" id="totalSlides">5</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">Auto-play:</span>
+                <span class="info-value" id="autoplayStatus">On</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

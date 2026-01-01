@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word & Character Counter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Text Analyzer</h1>
+        <p class="subtitle">Count words, characters, and analyze your text</p>
+
+        <div class="card">
+            <div class="toolbar">
+                <div class="limit-controls">
+                    <label for="characterLimit">Character Limit:</label>
+                    <select id="characterLimit">
+                        <option value="0">No Limit</option>
+                        <option value="140">140 (Twitter)</option>
+                        <option value="280">280 (Twitter Extended)</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
+                        <option value="2000">2000</option>
+                    </select>
+                </div>
+                <button class="btn-clear" id="clearBtn">Clear Text</button>
+            </div>
+
+            <textarea 
+                id="textInput" 
+                placeholder="Start typing or paste your text here..."
+                rows="12"
+            ></textarea>
+
+            <div class="limit-warning hidden" id="limitWarning">
+                Character limit reached!
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="characterCount">0</div>
+                    <div class="stat-label">Characters</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="characterNoSpaces">0</div>
+                    <div class="stat-label">Without Spaces</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="wordCount">0</div>
+                    <div class="stat-label">Words</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="sentenceCount">0</div>
+                    <div class="stat-label">Sentences</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="paragraphCount">0</div>
+                    <div class="stat-label">Paragraphs</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="readingTime">0</div>
+                    <div class="stat-label">Min Read</div>
+                </div>
+            </div>
+
+            <div class="details-section">
+                <h3>Additional Information</h3>
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">Lines:</span>
+                        <span class="detail-value" id="lineCount">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Average Word Length:</span>
+                        <span class="detail-value" id="avgWordLength">0</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Longest Word:</span>
+                        <span class="detail-value" id="longestWord">-</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Speaking Time (slow):</span>
+                        <span class="detail-value" id="speakingTime">0 min</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn-action" id="copyBtn">📋 Copy Text</button>
+                <button class="btn-action" id="downloadBtn">💾 Download</button>
+                <button class="btn-action" id="uppercaseBtn">🔠 Uppercase</button>
+                <button class="btn-action" id="lowercaseBtn">🔡 Lowercase</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

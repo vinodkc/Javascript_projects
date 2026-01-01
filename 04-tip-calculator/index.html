@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip & Bill Splitter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>💵 Tip Calculator</h1>
+        <p class="subtitle">Calculate tips and split bills easily</p>
+
+        <div class="card">
+            <div class="input-group">
+                <label for="billAmount">Bill Amount</label>
+                <div class="input-wrapper">
+                    <span class="currency">$</span>
+                    <input 
+                        type="number" 
+                        id="billAmount" 
+                        placeholder="0.00"
+                        min="0"
+                        step="0.01"
+                    >
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="tipPercentage">Tip Percentage</label>
+                <div class="tip-buttons">
+                    <button class="tip-btn" data-tip="5">5%</button>
+                    <button class="tip-btn" data-tip="10">10%</button>
+                    <button class="tip-btn active" data-tip="15">15%</button>
+                    <button class="tip-btn" data-tip="20">20%</button>
+                    <button class="tip-btn" data-tip="25">25%</button>
+                </div>
+                <div class="input-wrapper">
+                    <input 
+                        type="number" 
+                        id="tipPercentage" 
+                        placeholder="Custom"
+                        min="0"
+                        max="100"
+                        value="15"
+                    >
+                    <span class="percent">%</span>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="numberOfPeople">Number of People</label>
+                <div class="input-wrapper">
+                    <input 
+                        type="number" 
+                        id="numberOfPeople" 
+                        placeholder="1"
+                        min="1"
+                        value="1"
+                    >
+                    <span class="people-icon">👥</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="results-card">
+            <div class="result-row">
+                <div class="result-label">Tip Amount</div>
+                <div class="result-value" id="tipAmount">$0.00</div>
+            </div>
+            <div class="result-row">
+                <div class="result-label">Total Amount</div>
+                <div class="result-value" id="totalAmount">$0.00</div>
+            </div>
+            <div class="divider"></div>
+            <div class="result-row highlight">
+                <div class="result-label">Amount Per Person</div>
+                <div class="result-value large" id="perPersonAmount">$0.00</div>
+            </div>
+        </div>
+
+        <button class="btn-reset" id="resetBtn">Reset</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

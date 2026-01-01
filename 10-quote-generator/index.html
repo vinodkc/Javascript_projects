@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote & Joke Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="quotes">💭 Quotes</button>
+            <button class="tab-btn" data-tab="jokes">😄 Jokes</button>
+        </div>
+
+        <div class="tab-content active" id="quotes">
+            <div class="card quote-card">
+                <div class="quote-icon">"</div>
+                <p class="quote-text" id="quoteText">Click the button below to get inspired!</p>
+                <p class="quote-author" id="quoteAuthor">- Author</p>
+                
+                <div class="actions">
+                    <button class="btn-generate" id="newQuoteBtn">New Quote</button>
+                    <div class="action-buttons">
+                        <button class="btn-icon" id="copyQuoteBtn" title="Copy quote">📋</button>
+                        <button class="btn-icon" id="tweetQuoteBtn" title="Share on Twitter">🐦</button>
+                        <button class="btn-icon" id="favoriteQuoteBtn" title="Add to favorites">❤️</button>
+                    </div>
+                </div>
+
+                <div class="quote-category">
+                    <label for="quoteCategory">Category:</label>
+                    <select id="quoteCategory">
+                        <option value="all">All Categories</option>
+                        <option value="motivation">Motivation</option>
+                        <option value="life">Life</option>
+                        <option value="success">Success</option>
+                        <option value="wisdom">Wisdom</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="favorites-section">
+                <h3>❤️ Favorite Quotes</h3>
+                <div class="favorites-list" id="favoriteQuotes">
+                    <p class="empty-favorites">No favorites yet. Click the heart icon to add quotes!</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="jokes">
+            <div class="card joke-card">
+                <div class="joke-icon">😄</div>
+                <p class="joke-text" id="jokeText">Ready to laugh? Click the button below!</p>
+                
+                <div class="actions">
+                    <button class="btn-generate" id="newJokeBtn">New Joke</button>
+                    <div class="action-buttons">
+                        <button class="btn-icon" id="copyJokeBtn" title="Copy joke">📋</button>
+                        <button class="btn-icon" id="tweetJokeBtn" title="Share on Twitter">🐦</button>
+                    </div>
+                </div>
+
+                <div class="joke-rating" id="jokeRating">
+                    <p>Rate this joke:</p>
+                    <div class="stars">
+                        <button class="star" data-rating="1">⭐</button>
+                        <button class="star" data-rating="2">⭐</button>
+                        <button class="star" data-rating="3">⭐</button>
+                        <button class="star" data-rating="4">⭐</button>
+                        <button class="star" data-rating="5">⭐</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

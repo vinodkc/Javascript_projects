@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Diff Checker - Compare Text Files</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">⚖️</span>
+                <h1>Text Diff Checker</h1>
+            </div>
+            <p class="subtitle">Find the differences between two text files</p>
+        </header>
+
+        <!-- Toolbar -->
+        <div class="toolbar">
+            <div class="toolbar-left">
+                <button class="btn btn-primary" id="compareBtn">
+                    <span class="icon">🔍</span>
+                    Find Difference
+                </button>
+                <button class="btn btn-secondary" id="clearBtn">
+                    <span class="icon">🗑️</span>
+                    Clear All
+                </button>
+                <button class="btn btn-secondary" id="swapBtn" title="Swap texts">
+                    <span class="icon">↔️</span>
+                    Swap
+                </button>
+            </div>
+            <div class="toolbar-right">
+                <label class="toggle-label">
+                    <input type="checkbox" id="ignoreCase">
+                    <span>Ignore Case</span>
+                </label>
+                <label class="toggle-label">
+                    <input type="checkbox" id="ignoreWhitespace">
+                    <span>Ignore Whitespace</span>
+                </label>
+                <label class="toggle-label">
+                    <input type="checkbox" id="showInlineView">
+                    <span>Inline View</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section" id="inputSection">
+            <div class="input-panel">
+                <div class="panel-header">
+                    <h3>Original Text</h3>
+                    <div class="panel-actions">
+                        <button class="btn-icon" id="uploadFile1" title="Upload file">
+                            📁
+                        </button>
+                        <button class="btn-icon" id="pasteBtn1" title="Paste from clipboard">
+                            📋
+                        </button>
+                        <button class="btn-icon" id="clearText1" title="Clear">
+                            ✕
+                        </button>
+                        <input type="file" id="fileInput1" accept=".txt,.js,.html,.css,.json,.md" style="display: none;">
+                    </div>
+                </div>
+                <textarea 
+                    id="text1" 
+                    class="text-input" 
+                    placeholder="Enter or paste your original text here...&#10;&#10;You can also:&#10;• Upload a file using the 📁 button&#10;• Paste from clipboard using the 📋 button&#10;• Type or paste directly"></textarea>
+                <div class="char-count">
+                    <span id="count1">0</span> characters, <span id="lines1">0</span> lines
+                </div>
+            </div>
+
+            <div class="input-panel">
+                <div class="panel-header">
+                    <h3>Changed Text</h3>
+                    <div class="panel-actions">
+                        <button class="btn-icon" id="uploadFile2" title="Upload file">
+                            📁
+                        </button>
+                        <button class="btn-icon" id="pasteBtn2" title="Paste from clipboard">
+                            📋
+                        </button>
+                        <button class="btn-icon" id="clearText2" title="Clear">
+                            ✕
+                        </button>
+                        <input type="file" id="fileInput2" accept=".txt,.js,.html,.css,.json,.md" style="display: none;">
+                    </div>
+                </div>
+                <textarea 
+                    id="text2" 
+                    class="text-input" 
+                    placeholder="Enter or paste your changed text here...&#10;&#10;After entering text in both panels:&#10;• Click 'Find Difference' to compare&#10;• Differences will be highlighted&#10;• Use options above to customize comparison"></textarea>
+                <div class="char-count">
+                    <span id="count2">0</span> characters, <span id="lines2">0</span> lines
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-header">
+                <h2>Comparison Results</h2>
+                <div class="results-actions">
+                    <button class="btn btn-secondary" id="exportBtn">
+                        <span class="icon">💾</span>
+                        Export Results
+                    </button>
+                    <button class="btn btn-secondary" id="copyDiffBtn">
+                        <span class="icon">📋</span>
+                        Copy Diff
+                    </button>
+                    <button class="btn btn-secondary" id="backToEditBtn">
+                        <span class="icon">✏️</span>
+                        Edit Texts
+                    </button>
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-bar">
+                <div class="stat-item added">
+                    <span class="stat-icon">+</span>
+                    <span class="stat-value" id="addedCount">0</span>
+                    <span class="stat-label">Added</span>
+                </div>
+                <div class="stat-item removed">
+                    <span class="stat-icon">−</span>
+                    <span class="stat-value" id="removedCount">0</span>
+                    <span class="stat-label">Removed</span>
+                </div>
+                <div class="stat-item modified">
+                    <span class="stat-icon">~</span>
+                    <span class="stat-value" id="modifiedCount">0</span>
+                    <span class="stat-label">Modified</span>
+                </div>
+                <div class="stat-item unchanged">
+                    <span class="stat-icon">✓</span>
+                    <span class="stat-value" id="unchangedCount">0</span>
+                    <span class="stat-label">Unchanged</span>
+                </div>
+                <div class="stat-item similarity">
+                    <span class="stat-icon">≈</span>
+                    <span class="stat-value" id="similarityScore">0%</span>
+                    <span class="stat-label">Similarity</span>
+                </div>
+            </div>
+
+            <!-- Side-by-side View -->
+            <div class="diff-view" id="sideBySideView">
+                <div class="diff-panel">
+                    <div class="diff-panel-header">Original Text</div>
+                    <div class="diff-content" id="diff1"></div>
+                </div>
+                <div class="diff-panel">
+                    <div class="diff-panel-header">Changed Text</div>
+                    <div class="diff-content" id="diff2"></div>
+                </div>
+            </div>
+
+            <!-- Inline View -->
+            <div class="diff-view-inline" id="inlineView" style="display: none;">
+                <div class="diff-panel-header">Unified Diff View</div>
+                <div class="diff-content" id="inlineDiff"></div>
+            </div>
+
+            <!-- Legend -->
+            <div class="legend">
+                <h3>Legend</h3>
+                <div class="legend-items">
+                    <div class="legend-item">
+                        <span class="legend-color added"></span>
+                        <span>Added lines or characters</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color removed"></span>
+                        <span>Removed lines or characters</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color modified"></span>
+                        <span>Modified lines</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-color unchanged"></span>
+                        <span>Unchanged lines</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section">
+            <h2>Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Comparison</h3>
+                    <p>Instant line-by-line and character-level comparison</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Syntax Highlighting</h3>
+                    <p>Clear visualization of additions, deletions, and modifications</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📁</div>
+                    <h3>File Upload</h3>
+                    <p>Upload and compare text files directly</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Inline & Side-by-Side</h3>
+                    <p>Switch between unified and split view</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Flexible Options</h3>
+                    <p>Ignore case, whitespace, and more</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Export Results</h3>
+                    <p>Save comparison results as HTML or text</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🎓 Built for learning advanced JavaScript • String comparison algorithms • File handling</p>
+        </footer>
+    </div>
+
+    <!-- Notification Container -->
+    <div id="notifications"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+

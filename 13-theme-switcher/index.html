@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker & Theme Switcher</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🎨 Theme Customizer</h1>
+            <p class="subtitle">Personalize your experience with colors and themes</p>
+        </header>
+
+        <div class="theme-section">
+            <h2>🌓 Theme Mode</h2>
+            <div class="theme-buttons">
+                <button class="theme-btn active" data-theme="light">
+                    <span class="theme-icon">☀️</span>
+                    <span>Light</span>
+                </button>
+                <button class="theme-btn" data-theme="dark">
+                    <span class="theme-icon">🌙</span>
+                    <span>Dark</span>
+                </button>
+                <button class="theme-btn" data-theme="auto">
+                    <span class="theme-icon">🔄</span>
+                    <span>Auto</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="color-section">
+            <h2>🎨 Custom Colors</h2>
+            
+            <div class="color-picker-group">
+                <div class="color-picker-item">
+                    <label for="primaryColor">Primary Color</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="primaryColor" value="#667eea">
+                        <input type="text" id="primaryColorHex" value="#667eea" maxlength="7">
+                    </div>
+                </div>
+
+                <div class="color-picker-item">
+                    <label for="secondaryColor">Secondary Color</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="secondaryColor" value="#764ba2">
+                        <input type="text" id="secondaryColorHex" value="#764ba2" maxlength="7">
+                    </div>
+                </div>
+
+                <div class="color-picker-item">
+                    <label for="accentColor">Accent Color</label>
+                    <div class="color-input-wrapper">
+                        <input type="color" id="accentColor" value="#48bb78">
+                        <input type="text" id="accentColorHex" value="#48bb78" maxlength="7">
+                    </div>
+                </div>
+            </div>
+
+            <h3>🎭 Preset Themes</h3>
+            <div class="preset-themes">
+                <button class="preset-btn" data-preset="default">
+                    <div class="preset-colors">
+                        <span style="background: #667eea;"></span>
+                        <span style="background: #764ba2;"></span>
+                        <span style="background: #48bb78;"></span>
+                    </div>
+                    <span>Default</span>
+                </button>
+                <button class="preset-btn" data-preset="ocean">
+                    <div class="preset-colors">
+                        <span style="background: #4facfe;"></span>
+                        <span style="background: #00f2fe;"></span>
+                        <span style="background: #43e97b;"></span>
+                    </div>
+                    <span>Ocean</span>
+                </button>
+                <button class="preset-btn" data-preset="sunset">
+                    <div class="preset-colors">
+                        <span style="background: #fa709a;"></span>
+                        <span style="background: #fee140;"></span>
+                        <span style="background: #ff6b6b;"></span>
+                    </div>
+                    <span>Sunset</span>
+                </button>
+                <button class="preset-btn" data-preset="forest">
+                    <div class="preset-colors">
+                        <span style="background: #56ab2f;"></span>
+                        <span style="background: #a8e063;"></span>
+                        <span style="background: #38ef7d;"></span>
+                    </div>
+                    <span>Forest</span>
+                </button>
+                <button class="preset-btn" data-preset="royal">
+                    <div class="preset-colors">
+                        <span style="background: #8e2de2;"></span>
+                        <span style="background: #4a00e0;"></span>
+                        <span style="background: #da22ff;"></span>
+                    </div>
+                    <span>Royal</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="preview-section">
+            <h2>👀 Preview</h2>
+            <div class="preview-card">
+                <h3>Sample Card</h3>
+                <p>This is how your theme looks with the current color settings. The primary color is used for backgrounds and buttons, while the accent color highlights important elements.</p>
+                <button class="preview-btn">Primary Button</button>
+                <button class="preview-btn accent">Accent Button</button>
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="action-btn" id="resetBtn">🔄 Reset to Default</button>
+            <button class="action-btn" id="randomBtn">🎲 Random Colors</button>
+            <button class="action-btn" id="exportBtn">💾 Export Theme</button>
+        </div>
+
+        <div class="info-panel">
+            <h3>ℹ️ Current Theme Info</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <span class="info-label">Mode:</span>
+                    <span class="info-value" id="currentMode">Light</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Primary:</span>
+                    <span class="info-value" id="currentPrimary">#667eea</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Secondary:</span>
+                    <span class="info-value" id="currentSecondary">#764ba2</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Accent:</span>
+                    <span class="info-value" id="currentAccent">#48bb78</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
