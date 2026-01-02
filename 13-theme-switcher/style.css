@@ -1,3 +1,9 @@
+/*
+THEME SWITCHER - LEARNING: CSS Variables (--var-name), [data-theme] selector,
+var() function, -webkit-background-clip for gradient text
+*/
+
+/* CSS Variables: Define once, use everywhere */
 :root {
     --primary-color: #667eea;
     --secondary-color: #764ba2;
@@ -9,6 +15,7 @@
     --border-color: #e2e8f0;
 }
 
+/* Dark theme overrides */
 [data-theme="dark"] {
     --bg-color: #1a202c;
     --card-bg: #2d3748;
@@ -25,7 +32,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--bg-color);
+    background: var(--bg-color);  /* Uses CSS variable */
     color: var(--text-color);
     min-height: 100vh;
     padding: 20px;
@@ -42,6 +49,7 @@ body {
     margin-bottom: 40px;
 }
 
+/* LEARNING: Gradient text using clip */
 h1 {
     font-size: 2.5rem;
     margin-bottom: 10px;
@@ -134,6 +142,7 @@ h3 {
     gap: 10px;
 }
 
+/* Native color picker */
 input[type="color"] {
     width: 60px;
     height: 45px;
@@ -315,4 +324,3 @@ input[type="text"]:focus {
         grid-template-columns: 1fr;
     }
 }
-

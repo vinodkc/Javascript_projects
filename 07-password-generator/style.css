@@ -1,3 +1,27 @@
+/*
+============================================
+PASSWORD GENERATOR & STRENGTH CHECKER - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- Range input styling (accent-color)
+- Circular score display
+- Progress bar animations
+- Criterion met/unmet states
+- ::before pseudo-element content
+- CSS content: attr() for dynamic values
+
+KEY TECHNIQUES:
+1. accent-color for checkbox/range styling
+2. Circular border design for score
+3. width transitions for progress bars
+4. .met class for checkmark display
+5. ::before with content for icons
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -37,6 +61,9 @@ h2 {
     text-align: center;
 }
 
+/* ============================================
+   TABS
+   ============================================ */
 .tabs {
     display: flex;
     gap: 10px;
@@ -82,6 +109,9 @@ h2 {
     padding: 30px;
 }
 
+/* ============================================
+   PASSWORD DISPLAY
+   ============================================ */
 .password-display {
     display: flex;
     gap: 10px;
@@ -118,6 +148,9 @@ h2 {
     transform: scale(0.95);
 }
 
+/* ============================================
+   GENERATOR OPTIONS
+   ============================================ */
 .options {
     margin-bottom: 20px;
 }
@@ -138,13 +171,14 @@ h2 {
     font-size: 1.2rem;
 }
 
+/* LEARNING: accent-color changes slider/checkbox color */
 input[type="range"] {
     width: 100%;
     height: 8px;
     border-radius: 5px;
     background: #e2e8f0;
     outline: none;
-    accent-color: #667eea;
+    accent-color: #667eea;  /* Modern CSS for input styling */
 }
 
 .checkbox-row {
@@ -191,6 +225,9 @@ input[type="range"] {
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
+/* ============================================
+   PASSWORD INPUT WITH TOGGLE
+   ============================================ */
 .input-group {
     margin-bottom: 20px;
 }
@@ -235,6 +272,9 @@ input[type="range"] {
     background: #cbd5e0;
 }
 
+/* ============================================
+   STRENGTH RESULTS
+   ============================================ */
 .strength-result,
 .generated-strength {
     margin-top: 20px;
@@ -255,10 +295,11 @@ input[type="range"] {
     margin-bottom: 20px;
 }
 
+/* LEARNING: Circular score display */
 .score-circle {
     width: 120px;
     height: 120px;
-    border-radius: 50%;
+    border-radius: 50%;  /* Circular */
     border: 8px solid #e2e8f0;
     display: flex;
     flex-direction: column;
@@ -285,6 +326,7 @@ input[type="range"] {
     color: #2d3748;
 }
 
+/* LEARNING: Animated progress bar */
 .strength-bar-container {
     height: 20px;
     background: #e2e8f0;
@@ -295,7 +337,7 @@ input[type="range"] {
 
 .strength-bar {
     height: 100%;
-    transition: all 0.5s;
+    transition: all 0.5s;  /* Smooth width changes */
     border-radius: 10px;
 }
 
@@ -312,6 +354,11 @@ input[type="range"] {
     margin-top: 10px;
 }
 
+/* ============================================
+   CRITERIA CHECKLIST
+   ============================================
+   LEARNING: Visual feedback for password requirements
+*/
 .criteria-list {
     margin-bottom: 20px;
 }
@@ -326,8 +373,9 @@ input[type="range"] {
     transition: all 0.3s;
 }
 
+/* LEARNING: .met class applied when criterion satisfied */
 .criterion.met {
-    background: #c6f6d5;
+    background: #c6f6d5;  /* Light green */
 }
 
 .criterion-icon {
@@ -340,8 +388,9 @@ input[type="range"] {
     color: #48bb78;
 }
 
+/* LEARNING: ::before pseudo-element changes icon */
 .criterion.met .criterion-icon::before {
-    content: '✓';
+    content: '✓';  /* Checkmark */
 }
 
 .criterion-text {
@@ -356,6 +405,9 @@ input[type="range"] {
     line-height: 1.6;
 }
 
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -367,6 +419,9 @@ input[type="range"] {
     }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 600px) {
     .container {
         padding: 20px;
@@ -394,4 +449,3 @@ input[type="range"] {
         font-size: 2rem;
     }
 }
-

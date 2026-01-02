@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!--
+        ====================
+        MAIN CONTAINER
+        ====================
+        This div wraps the entire Expense Tracker application.
+        LEARNING: This project demonstrates CRUD operations, localStorage persistence,
+        data filtering, and financial calculations.
+    -->
     <div class="container">
         <!-- Header -->
         <header>
@@ -14,7 +22,14 @@
             <p class="subtitle">Track your income and expenses</p>
         </header>
 
-        <!-- Balance Summary -->
+        <!--
+            ====================
+            BALANCE SUMMARY CARDS
+            ====================
+            Displays three key financial metrics at the top.
+            Values are automatically calculated from all transactions.
+            LEARNING: Real-time calculation and DOM updates.
+        -->
         <div class="balance-summary">
             <div class="balance-card total">
                 <div class="balance-icon">💵</div>
@@ -39,11 +54,22 @@
             </div>
         </div>
 
-        <!-- Add Transaction Form -->
+        <!--
+            ====================
+            ADD TRANSACTION FORM
+            ====================
+            Form for creating new income or expense entries.
+            Category determines if it's income or expense.
+            LEARNING: Form validation, event.preventDefault(), data collection.
+        -->
         <div class="transaction-form-container">
             <h2>Add New Transaction</h2>
             <form id="transactionForm">
                 <div class="form-grid">
+                    <!--
+                        Description Input:
+                        Text description of the transaction.
+                    -->
                     <div class="form-group">
                         <label for="description">Description</label>
                         <input 
@@ -52,6 +78,11 @@
                             placeholder="e.g., Salary, Groceries, Coffee..."
                             required>
                     </div>
+                    <!--
+                        Amount Input:
+                        Numeric value with 2 decimal places for cents.
+                        LEARNING: type="number" with step and min attributes.
+                    -->
                     <div class="form-group">
                         <label for="amount">Amount ($)</label>
                         <input 
@@ -62,6 +93,12 @@
                             min="0.01"
                             required>
                     </div>
+                    <!--
+                        Category Selector:
+                        Grouped options for income vs expenses.
+                        Category determines transaction type.
+                        LEARNING: <optgroup> for organized dropdowns.
+                    -->
                     <div class="form-group">
                         <label for="category">Category</label>
                         <select id="category" required>
@@ -83,11 +120,20 @@
                             </optgroup>
                         </select>
                     </div>
+                    <!--
+                        Date Input:
+                        HTML5 date picker for transaction date.
+                        LEARNING: type="date" provides native date picker.
+                    -->
                     <div class="form-group">
                         <label for="date">Date</label>
                         <input type="date" id="date" required>
                     </div>
                 </div>
+                <!--
+                    Optional Notes Field:
+                    Additional details about the transaction.
+                -->
                 <div class="form-group">
                     <label for="notes">Notes (Optional)</label>
                     <input 
@@ -107,15 +153,29 @@
             </form>
         </div>
 
-        <!-- Filter and Search -->
+        <!--
+            ====================
+            FILTER AND SEARCH SECTION
+            ====================
+            Tools for filtering and searching through transactions.
+            LEARNING: Array.filter() method for dynamic filtering.
+        -->
         <div class="filter-section">
             <h2>Transactions</h2>
             <div class="filter-controls">
+                <!--
+                    Type Filter:
+                    Show all, income only, or expenses only.
+                -->
                 <select id="filterType">
                     <option value="all">All Transactions</option>
                     <option value="income">Income Only</option>
                     <option value="expense">Expenses Only</option>
                 </select>
+                <!--
+                    Category Filter:
+                    Filter by specific category.
+                -->
                 <select id="filterCategory">
                     <option value="all">All Categories</option>
                     <option value="salary">💼 Salary</option>
@@ -129,6 +189,11 @@
                     <option value="health">🏥 Health</option>
                     <option value="education">📚 Education</option>
                 </select>
+                <!--
+                    Search Input:
+                    Real-time search through descriptions and notes.
+                    LEARNING: String.includes() for search functionality.
+                -->
                 <input 
                     type="text" 
                     id="searchInput" 
@@ -136,7 +201,14 @@
             </div>
         </div>
 
-        <!-- Transactions List -->
+        <!--
+            ====================
+            TRANSACTIONS LIST
+            ====================
+            Displays all transactions with edit/delete options.
+            'id="transactionsList"' is dynamically populated by JavaScript.
+            LEARNING: DOM manipulation with createElement, event delegation.
+        -->
         <div class="transactions-container">
             <div class="transactions-list" id="transactionsList">
                 <div class="no-transactions">

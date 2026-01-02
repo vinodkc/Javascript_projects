@@ -1,3 +1,7 @@
+<!--
+RESPONSIVE NAVBAR - LEARNING: Fixed positioning, hamburger menu animation,
+smooth scroll, scroll detection (.scrolled class), intersection observer for active links
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,16 +11,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Fixed navbar with scroll detection -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <div class="nav-brand">
                 <span class="logo">🚀 MyBrand</span>
             </div>
 
+            <!-- Hamburger menu button (mobile) -->
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span class="hamburger"></span>
             </button>
 
+            <!-- Nav links -->
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
                     <a href="#home" class="nav-link active">Home</a>
@@ -37,6 +44,7 @@
         </div>
     </nav>
 
+    <!-- Page sections -->
     <section id="home" class="section">
         <div class="content">
             <h1>Welcome Home</h1>
@@ -167,6 +175,7 @@
         <p>&copy; 2026 MyBrand. All rights reserved.</p>
     </footer>
 
+    <!-- Scroll to top button -->
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
         ↑
     </button>
@@ -174,4 +183,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,29 +1,47 @@
+/*
+ * ========================================
+ * GLOBAL RESET & BASE STYLES
+ * ========================================
+ * Sets up basic styles and a CSS reset for consistency.
+ */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font stack */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient background */
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
+    padding: 20px; /* Add some padding around the container */
+    color: #333; /* Dark text color */
+    /* LEARNING: Flexbox for layout, linear-gradient for backgrounds */
 }
 
+/*
+ * ========================================
+ * CONTAINER
+ * ========================================
+ * Main wrapper for the application content.
+ */
 .container {
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 900px; /* Maximum width for readability */
+    margin: 0 auto; /* Center horizontally */
 }
 
-/* Header */
+/*
+ * ========================================
+ * HEADER SECTION
+ * ========================================
+ * Styles for the main title and subtitle.
+ */
 .main-title {
     text-align: center;
     color: white;
     font-size: 2.5rem;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2); /* Depth effect */
 }
 
 .subtitle {
@@ -33,15 +51,22 @@ body {
     margin-bottom: 30px;
 }
 
-/* Tabs */
+/*
+ * ========================================
+ * TAB NAVIGATION
+ * ========================================
+ * Tab system for switching between Quotes, Jokes, and Settings.
+ * LEARNING: Flexbox for horizontal tab layout, backdrop-filter for blur effect.
+ */
 .tabs {
-    display: flex;
-    gap: 10px;
+    display: flex; /* Flexbox for horizontal layout */
+    gap: 10px; /* Space between tabs */
     margin-bottom: 20px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.1); /* Semi-transparent background */
     padding: 8px;
     border-radius: 12px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); /* Glassmorphism effect */
+    /* LEARNING: backdrop-filter creates modern frosted glass effect */
 }
 
 .tab-btn {

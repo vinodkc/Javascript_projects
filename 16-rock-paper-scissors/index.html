@@ -7,10 +7,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!--
+        ====================
+        MAIN CONTAINER
+        ====================
+        This div wraps the entire Rock Paper Scissors game.
+    -->
     <div class="container">
         <h1>✊ ✋ ✌️ Rock Paper Scissors</h1>
         <p class="subtitle">Play against the computer!</p>
 
+        <!--
+            ====================
+            SCOREBOARD SECTION
+            ====================
+            Displays scores for player, computer, and ties.
+            Each score-item is updated by JavaScript after each game round.
+        -->
         <div class="scoreboard">
             <div class="score-item">
                 <div class="score-label">You</div>
@@ -26,24 +39,50 @@
             </div>
         </div>
 
+        <!--
+            ====================
+            GAME AREA
+            ====================
+            Displays the choices made by player and computer, and shows the result message.
+        -->
         <div class="game-area">
             <div class="choice-display">
+                <!--
+                    Player Choice Display:
+                    'id="playerChoice"' is updated by JavaScript to show player's selection.
+                -->
                 <div class="player-choice">
                     <div class="choice-label">You</div>
                     <div class="choice-icon" id="playerChoice">❓</div>
                 </div>
                 <div class="vs">VS</div>
+                <!--
+                    Computer Choice Display:
+                    'id="computerChoice"' is updated by JavaScript to show computer's selection.
+                -->
                 <div class="computer-choice">
                     <div class="choice-label">Computer</div>
                     <div class="choice-icon" id="computerChoice">❓</div>
                 </div>
             </div>
 
+            <!--
+                Result Message:
+                'id="resultMessage"' displays the outcome (Win, Lose, or Tie).
+                CSS classes 'win', 'lose', and 'tie' are dynamically added for styling.
+            -->
             <div class="result-message" id="resultMessage">
                 Choose your weapon!
             </div>
         </div>
 
+        <!--
+            ====================
+            CHOICE BUTTONS
+            ====================
+            Player clicks one of these buttons to make a choice.
+            'data-choice' attribute is used by JavaScript to identify the selection.
+        -->
         <div class="choices">
             <button class="choice-btn" data-choice="rock">
                 <span class="choice-emoji">✊</span>
@@ -59,6 +98,12 @@
             </button>
         </div>
 
+        <!--
+            ====================
+            GAME STATISTICS
+            ====================
+            Displays total games played and win rate.
+        -->
         <div class="game-stats">
             <div class="stat-item">
                 <span class="stat-label">Games Played:</span>
@@ -70,8 +115,18 @@
             </div>
         </div>
 
+        <!--
+            Reset Button:
+            Resets all scores and statistics to zero.
+        -->
         <button class="reset-btn" id="resetBtn">🔄 Reset Scores</button>
 
+        <!--
+            ====================
+            GAME RULES
+            ====================
+            Displays the traditional rules of Rock Paper Scissors.
+        -->
         <div class="rules">
             <h3>📜 Rules</h3>
             <ul>
@@ -82,6 +137,11 @@
         </div>
     </div>
 
+    <!--
+        Script Inclusion:
+        The JavaScript file is linked at the end of the body to ensure all HTML elements are loaded
+        before the script attempts to access them, preventing potential errors.
+    -->
     <script src="script.js"></script>
 </body>
 </html>

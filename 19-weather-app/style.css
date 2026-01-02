@@ -1,31 +1,56 @@
+/*
+ * ========================================
+ * GLOBAL RESET & BASE STYLES
+ * ========================================
+ * Sets up basic styles and a CSS reset for consistency.
+ */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-    color: #333;
-    transition: background 0.5s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font stack */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Default gradient background */
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
+    padding: 20px; /* Add some padding around the container */
+    color: #333; /* Dark text color */
+    transition: background 0.5s ease; /* Smooth background transitions for weather changes */
+    /* LEARNING: CSS transitions for smooth UI updates */
 }
 
-/* Weather-based backgrounds */
+/*
+ * ========================================
+ * DYNAMIC WEATHER-BASED BACKGROUNDS
+ * ========================================
+ * Background changes based on current weather conditions.
+ * Classes are added dynamically by JavaScript.
+ * LEARNING: Dynamic styling based on data from APIs.
+ */
 body.clear { background: linear-gradient(135deg, #FDB99B 0%, #CF8BF3 50%, #A770EF 100%); }
 body.clouds { background: linear-gradient(135deg, #757F9A 0%, #D7DDE8 100%); }
 body.rain { background: linear-gradient(135deg, #5C6BC0 0%, #283593 100%); }
 body.snow { background: linear-gradient(135deg, #E0EAFC 0%, #CFDEF3 100%); }
 body.thunderstorm { background: linear-gradient(135deg, #4B4B4B 0%, #222222 100%); }
 
+/*
+ * ========================================
+ * CONTAINER
+ * ========================================
+ * Main wrapper for the application content.
+ */
 .container {
-    max-width: 900px;
-    margin: 0 auto;
+    max-width: 900px; /* Maximum width for readability */
+    margin: 0 auto; /* Center horizontally */
 }
 
-/* Header */
+/*
+ * ========================================
+ * HEADER SECTION
+ * ========================================
+ * Styles for the main title and subtitle.
+ */
 header {
     text-align: center;
     color: white;

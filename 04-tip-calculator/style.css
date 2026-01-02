@@ -1,9 +1,36 @@
+/*
+============================================
+TIP & BILL SPLITTER - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- Input wrappers with positioned icons/symbols
+- Grid layout for quick-select buttons
+- Gradient backgrounds for results
+- Monospace fonts for currency
+- rgba() for semi-transparent dividers
+- :last-child selector to remove margins
+
+KEY TECHNIQUES:
+1. position: absolute for currency symbols
+2. padding adjustments for icon positioning
+3. CSS Grid for responsive button layout
+4. Linear gradients for visual hierarchy
+5. Monospace fonts for aligned numbers
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ============================================
+   BODY LAYOUT
+   ============================================ */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -14,6 +41,9 @@ body {
     align-items: center;
 }
 
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
 .container {
     background: white;
     border-radius: 20px;
@@ -36,6 +66,9 @@ h1 {
     margin-bottom: 30px;
 }
 
+/* ============================================
+   INPUT CARD
+   ============================================ */
 .card {
     background: #f7fafc;
     border-radius: 15px;
@@ -47,6 +80,7 @@ h1 {
     margin-bottom: 25px;
 }
 
+/* LEARNING: :last-child removes bottom margin from last item */
 .input-group:last-child {
     margin-bottom: 0;
 }
@@ -59,15 +93,20 @@ label {
     font-size: 1rem;
 }
 
+/* ============================================
+   INPUT WRAPPER PATTERN
+   ============================================
+   LEARNING: Wrapper allows positioning of icons/symbols
+*/
 .input-wrapper {
-    position: relative;
+    position: relative;  /* For absolute positioned children */
     display: flex;
     align-items: center;
 }
 
 input[type="number"] {
     width: 100%;
-    padding: 15px 45px 15px 15px;
+    padding: 15px 45px 15px 15px;  /* Extra padding for symbols */
     border: 2px solid #e2e8f0;
     border-radius: 10px;
     font-size: 1.2rem;
@@ -79,11 +118,13 @@ input[type="number"]:focus {
     border-color: #667eea;
 }
 
+/* LEARNING: Control visibility of number input spinners */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-    opacity: 1;
+    opacity: 1;  /* Show spinner buttons */
 }
 
+/* LEARNING: Absolute positioning for currency symbol */
 .currency {
     position: absolute;
     left: 15px;
@@ -92,6 +133,7 @@ input[type="number"]::-webkit-outer-spin-button {
     font-weight: 600;
 }
 
+/* Right-side symbols */
 .percent,
 .people-icon {
     position: absolute;
@@ -101,9 +143,14 @@ input[type="number"]::-webkit-outer-spin-button {
     font-weight: 600;
 }
 
+/* ============================================
+   TIP QUICK-SELECT BUTTONS
+   ============================================
+   LEARNING: CSS Grid for 5 equal-width buttons
+*/
 .tip-buttons {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr);  /* 5 equal columns */
     gap: 8px;
     margin-bottom: 15px;
 }
@@ -124,12 +171,18 @@ input[type="number"]::-webkit-outer-spin-button {
     color: #667eea;
 }
 
+/* LEARNING: .active class marks selected button */
 .tip-btn.active {
     background: #667eea;
     color: white;
     border-color: #667eea;
 }
 
+/* ============================================
+   RESULTS CARD
+   ============================================
+   LEARNING: Gradient background for visual emphasis
+*/
 .results-card {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     border-radius: 15px;
@@ -151,29 +204,34 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .result-label {
     font-size: 1rem;
-    opacity: 0.9;
+    opacity: 0.9;  /* Slightly transparent */
 }
 
+/* LEARNING: Monospace font for currency alignment */
 .result-value {
     font-size: 1.5rem;
     font-weight: bold;
-    font-family: 'Courier New', monospace;
+    font-family: 'Courier New', monospace;  /* All digits same width */
 }
 
 .result-value.large {
-    font-size: 2rem;
+    font-size: 2rem;  /* Emphasized amount */
 }
 
+/* LEARNING: Visual divider using rgba */
 .divider {
     height: 2px;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.3);  /* Semi-transparent white */
     margin: 20px 0;
 }
 
 .highlight {
-    padding-top: 10px;
+    padding-top: 10px;  /* Extra space after divider */
 }
 
+/* ============================================
+   RESET BUTTON
+   ============================================ */
 .btn-reset {
     width: 100%;
     padding: 15px;
@@ -195,6 +253,9 @@ input[type="number"]::-webkit-outer-spin-button {
     box-shadow: 0 5px 15px rgba(252, 129, 129, 0.4);
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 600px) {
     .container {
         padding: 20px;
@@ -204,6 +265,7 @@ input[type="number"]::-webkit-outer-spin-button {
         font-size: 2rem;
     }
 
+    /* LEARNING: Change grid to 3 columns on small screens */
     .tip-buttons {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -212,4 +274,3 @@ input[type="number"]::-webkit-outer-spin-button {
         font-size: 1.8rem;
     }
 }
-

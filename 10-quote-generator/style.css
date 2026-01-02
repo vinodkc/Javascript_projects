@@ -1,9 +1,36 @@
+/*
+============================================
+QUOTE & JOKE GENERATOR - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- Tab interface styling
+- Conditional visibility (display: none/block)
+- Absolute positioning for decorative elements
+- Star rating with filter effects
+- Favorite items with left border accent
+- Button state changes (favorited class)
+
+KEY TECHNIQUES:
+1. CSS animations for tab switching
+2. grayscale filter for inactive stars
+3. position: absolute for quote icon overlay
+4. border-left accent for list items
+5. Fixed aspect buttons (width = height)
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ============================================
+   BODY LAYOUT
+   ============================================ */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -14,6 +41,9 @@ body {
     align-items: center;
 }
 
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
 .container {
     max-width: 700px;
     width: 100%;
@@ -23,6 +53,11 @@ body {
     padding: 40px;
 }
 
+/* ============================================
+   TAB NAVIGATION
+   ============================================
+   LEARNING: Two-button toggle interface
+*/
 .tabs {
     display: flex;
     gap: 15px;
@@ -30,7 +65,7 @@ body {
 }
 
 .tab-btn {
-    flex: 1;
+    flex: 1;  /* Equal width buttons */
     padding: 15px;
     border: 2px solid #e2e8f0;
     background: white;
@@ -47,21 +82,30 @@ body {
     color: #667eea;
 }
 
+/* LEARNING: .active class marks selected tab */
 .tab-btn.active {
     background: #667eea;
     color: white;
     border-color: #667eea;
 }
 
+/* ============================================
+   TAB CONTENT SECTIONS
+   ============================================
+   LEARNING: Only one section visible at a time
+*/
 .tab-content {
-    display: none;
+    display: none;  /* Hidden by default */
 }
 
 .tab-content.active {
-    display: block;
+    display: block;  /* Shown by JavaScript */
     animation: fadeIn 0.3s ease;
 }
 
+/* ============================================
+   CARD CONTAINER
+   ============================================ */
 .card {
     background: #f7fafc;
     border-radius: 15px;
@@ -71,17 +115,22 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: relative;  /* For absolute positioned quote icon */
     margin-bottom: 30px;
 }
 
+/* ============================================
+   QUOTE STYLING
+   ============================================
+   LEARNING: Decorative quotation mark overlay
+*/
 .quote-icon {
     font-size: 5rem;
-    color: #cbd5e0;
-    position: absolute;
+    color: #cbd5e0;  /* Light gray */
+    position: absolute;  /* Positioned independently */
     top: 20px;
     left: 30px;
-    font-family: Georgia, serif;
+    font-family: Georgia, serif;  /* Serif font for quotes */
 }
 
 .quote-text {
@@ -90,8 +139,8 @@ body {
     line-height: 1.8;
     text-align: center;
     margin-bottom: 20px;
-    font-style: italic;
-    z-index: 1;
+    font-style: italic;  /* Italicized quotes */
+    z-index: 1;  /* Above quote icon */
 }
 
 .quote-author {
@@ -101,6 +150,9 @@ body {
     margin-bottom: 30px;
 }
 
+/* ============================================
+   JOKE STYLING
+   ============================================ */
 .joke-icon {
     font-size: 4rem;
     margin-bottom: 20px;
@@ -114,6 +166,9 @@ body {
     margin-bottom: 30px;
 }
 
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
 .actions {
     display: flex;
     flex-direction: column;
@@ -147,6 +202,7 @@ body {
     gap: 10px;
 }
 
+/* LEARNING: Square icon buttons with emoji */
 .btn-icon {
     width: 50px;
     height: 50px;
@@ -164,18 +220,22 @@ body {
 .btn-icon:hover {
     background: #edf2f7;
     border-color: #cbd5e0;
-    transform: scale(1.1);
+    transform: scale(1.1);  /* Enlarge on hover */
 }
 
 .btn-icon:active {
-    transform: scale(0.95);
+    transform: scale(0.95);  /* Shrink on click */
 }
 
+/* LEARNING: .favorited class applied when quote is saved */
 .btn-icon.favorited {
-    background: #fc8181;
+    background: #fc8181;  /* Red background */
     border-color: #fc8181;
 }
 
+/* ============================================
+   CATEGORY SELECTOR
+   ============================================ */
 .quote-category {
     margin-top: 20px;
     display: flex;
@@ -202,6 +262,11 @@ body {
     border-color: #667eea;
 }
 
+/* ============================================
+   JOKE RATING SYSTEM
+   ============================================
+   LEARNING: Interactive star rating with filters
+*/
 .joke-rating {
     text-align: center;
     margin-top: 20px;
@@ -225,17 +290,23 @@ body {
     font-size: 2rem;
     cursor: pointer;
     transition: all 0.2s;
-    filter: grayscale(100%);
+    
+    /* LEARNING: CSS filters for visual effects */
+    filter: grayscale(100%);  /* Gray by default */
     opacity: 0.5;
 }
 
+/* LEARNING: Hover and active states remove grayscale */
 .star:hover,
 .star.active {
-    filter: grayscale(0%);
+    filter: grayscale(0%);  /* Full color */
     opacity: 1;
-    transform: scale(1.2);
+    transform: scale(1.2);  /* Enlarge */
 }
 
+/* ============================================
+   FAVORITES SECTION
+   ============================================ */
 .favorites-section h3 {
     color: #2d3748;
     margin-bottom: 20px;
@@ -249,17 +320,18 @@ body {
 }
 
 .empty-favorites {
-    color: #a0aec0;
+    color: #a0aec0;  /* Muted gray */
     text-align: center;
     padding: 30px;
     font-style: italic;
 }
 
+/* LEARNING: Favorite items created dynamically by JavaScript */
 .favorite-item {
     background: #f7fafc;
     padding: 20px;
     border-radius: 10px;
-    border-left: 4px solid #667eea;
+    border-left: 4px solid #667eea;  /* Accent border */
     position: relative;
 }
 
@@ -275,6 +347,7 @@ body {
     font-size: 0.9rem;
 }
 
+/* LEARNING: Remove button positioned in top-right corner */
 .favorite-remove {
     position: absolute;
     top: 10px;
@@ -282,7 +355,7 @@ body {
     background: #fc8181;
     color: white;
     border: none;
-    border-radius: 50%;
+    border-radius: 50%;  /* Circular button */
     width: 25px;
     height: 25px;
     cursor: pointer;
@@ -295,6 +368,9 @@ body {
     transform: scale(1.1);
 }
 
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -306,6 +382,9 @@ body {
     }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 600px) {
     .container {
         padding: 20px;
@@ -333,8 +412,8 @@ body {
         left: 15px;
     }
 
+    /* Stack tabs vertically on mobile */
     .tabs {
         flex-direction: column;
     }
 }
-

@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!--
+        ====================
+        MAIN CONTAINER
+        ====================
+        This div wraps the entire Memory Card Game application.
+    -->
     <div class="container">
         <!-- Header -->
         <header>
@@ -14,10 +20,21 @@
             <p class="subtitle">Test your memory by matching pairs!</p>
         </header>
 
-        <!-- Game Settings -->
+        <!--
+            ====================
+            GAME SETTINGS SECTION
+            ====================
+            Allows players to configure difficulty and theme before starting.
+            'id="settingsPanel"' is shown before game starts, hidden during gameplay.
+        -->
         <div class="settings-panel" id="settingsPanel">
             <h2>Game Settings</h2>
             <div class="settings-grid">
+                <!--
+                    Difficulty Selector:
+                    Determines number of cards to match (12, 16, 20, or 24 cards).
+                    More cards = harder difficulty.
+                -->
                 <div class="setting-item">
                     <label for="difficulty">Difficulty:</label>
                     <select id="difficulty">
@@ -27,6 +44,10 @@
                         <option value="expert">Expert (24 cards - 12 pairs)</option>
                     </select>
                 </div>
+                <!--
+                    Theme Selector:
+                    Changes the visual content on cards (emojis, animals, fruits, numbers).
+                -->
                 <div class="setting-item">
                     <label for="theme">Theme:</label>
                     <select id="theme">
@@ -40,9 +61,19 @@
             <button class="btn btn-primary" id="startGameBtn">Start Game</button>
         </div>
 
-        <!-- Game Area -->
+        <!--
+            ====================
+            GAME AREA
+            ====================
+            Main gameplay section, hidden until game starts.
+            'style="display: none;"' is toggled by JavaScript.
+        -->
         <div class="game-area" id="gameArea" style="display: none;">
-            <!-- Game Stats -->
+            <!--
+                Game Statistics:
+                Real-time display of game progress and performance metrics.
+                All values are updated by JavaScript during gameplay.
+            -->
             <div class="game-stats">
                 <div class="stat-item">
                     <span class="stat-icon">⏱️</span>
@@ -68,10 +99,18 @@
                 </div>
             </div>
 
-            <!-- Game Board -->
+            <!--
+                Game Board:
+                Grid container where card elements are dynamically created.
+                'id="gameBoard"' is populated by JavaScript using the Fisher-Yates shuffle algorithm.
+                LEARNING: CSS Grid for responsive card layout, transform for 3D flip effect.
+            -->
             <div class="game-board" id="gameBoard"></div>
 
-            <!-- Action Buttons -->
+            <!--
+                Action Buttons:
+                Controls for game management.
+            -->
             <div class="action-buttons">
                 <button class="btn btn-secondary" id="pauseBtn">⏸️ Pause</button>
                 <button class="btn btn-secondary" id="restartBtn">🔄 Restart</button>
@@ -79,7 +118,13 @@
             </div>
         </div>
 
-        <!-- Statistics Section -->
+        <!--
+            ====================
+            STATISTICS / LEADERBOARD SECTION
+            ====================
+            Displays best times for each difficulty level.
+            Data persisted in localStorage across sessions.
+        -->
         <div class="stats-section">
             <h2>Your Best Times</h2>
             <div class="leaderboard">
@@ -89,6 +134,10 @@
                     <span class="time">Time</span>
                     <span class="moves-col">Moves</span>
                 </div>
+                <!--
+                    Leaderboard List:
+                    Dynamically populated by JavaScript with saved records.
+                -->
                 <div id="leaderboardList">
                     <p class="no-records">No records yet. Play some games!</p>
                 </div>
@@ -96,18 +145,32 @@
             <button class="btn btn-secondary" id="clearRecordsBtn">Clear Records</button>
         </div>
 
-        <!-- Victory Modal -->
+        <!--
+            ====================
+            VICTORY MODAL
+            ====================
+            Popup displayed when all pairs are successfully matched.
+            Shows completion stats and celebration animation.
+        -->
         <div class="modal" id="victoryModal">
             <div class="modal-content">
                 <div class="modal-header">
                     <h2>🎉 Congratulations!</h2>
                 </div>
                 <div class="modal-body">
+                    <!--
+                        Victory Animation:
+                        CSS keyframe animations for celebration effect.
+                    -->
                     <div class="victory-animation">
                         <div class="trophy">🏆</div>
                         <div class="confetti">🎊</div>
                     </div>
                     <p class="modal-message">You've matched all pairs!</p>
+                    <!--
+                        Modal Statistics:
+                        Final game results including time, moves, accuracy, and star rating.
+                    -->
                     <div class="modal-stats">
                         <div class="modal-stat">
                             <span class="modal-stat-icon">⏱️</span>
@@ -130,6 +193,10 @@
                             <span class="modal-stat-value" id="modalStars">⭐⭐⭐</span>
                         </div>
                     </div>
+                    <!--
+                        New Record Badge:
+                        Only displayed if player beats their previous best time.
+                    -->
                     <div class="new-record" id="newRecordBadge" style="display: none;">
                         <span class="record-icon">🆕</span>
                         <span class="record-text">New Best Time!</span>
@@ -142,7 +209,13 @@
             </div>
         </div>
 
-        <!-- Pause Overlay -->
+        <!--
+            ====================
+            PAUSE OVERLAY
+            ====================
+            Full-screen overlay when game is paused.
+            Prevents cheating by hiding the game board.
+        -->
         <div class="pause-overlay" id="pauseOverlay" style="display: none;">
             <div class="pause-content">
                 <h2>⏸️ Game Paused</h2>
@@ -157,6 +230,11 @@
         </footer>
     </div>
 
+    <!--
+        Script Inclusion:
+        The JavaScript file is linked at the end of the body to ensure all HTML elements are loaded
+        before the script attempts to access them, preventing potential errors.
+    -->
     <script src="script.js"></script>
 </body>
 </html>

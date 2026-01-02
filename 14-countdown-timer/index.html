@@ -1,3 +1,7 @@
+<!--
+COUNTDOWN TIMER - LEARNING: Date/time calculations, setInterval for updates,
+preset buttons, progress bar, multi-screen states (setup/running/completed)
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +15,7 @@
         <h1>⏰ Countdown Timer</h1>
         <p class="subtitle">Set your target date and watch the countdown</p>
 
+        <!-- SETUP SCREEN: Configure timer -->
         <div class="timer-setup" id="timerSetup">
             <h2>Set Countdown</h2>
             
@@ -31,6 +36,7 @@
                 </div>
             </div>
 
+            <!-- Quick presets using data attributes -->
             <h3>Quick Presets</h3>
             <div class="preset-buttons">
                 <button class="preset-btn" data-minutes="1">1 Minute</button>
@@ -44,12 +50,14 @@
             <button class="btn-start" id="startBtn">Start Countdown</button>
         </div>
 
+        <!-- TIMER DISPLAY: Running countdown -->
         <div class="timer-display hidden" id="timerDisplay">
             <div class="event-header">
                 <h2 id="eventTitle">Countdown to Event</h2>
                 <button class="btn-icon" id="editBtn" title="Edit">✏️</button>
             </div>
 
+            <!-- Countdown display with monospace fonts -->
             <div class="countdown">
                 <div class="time-unit">
                     <div class="time-value" id="days">00</div>
@@ -72,10 +80,12 @@
                 </div>
             </div>
 
+            <!-- Progress bar showing time elapsed -->
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
 
+            <!-- Additional info -->
             <div class="timer-info">
                 <div class="info-row">
                     <span class="info-label">Target Date:</span>
@@ -94,6 +104,7 @@
             <button class="btn-reset" id="resetBtn">🔄 Reset Timer</button>
         </div>
 
+        <!-- COMPLETED SCREEN: Timer finished -->
         <div class="completed-screen hidden" id="completedScreen">
             <div class="celebration">🎉</div>
             <h2>Time's Up!</h2>
@@ -105,4 +116,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

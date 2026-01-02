@@ -1,3 +1,23 @@
+<!--
+============================================
+TIP & BILL SPLITTER - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- Number input validation (min, max, step)
+- Quick-select buttons for common values
+- Real-time calculation display
+- Multi-person bill splitting
+- Currency symbol positioning
+
+KEY CONCEPTS:
+1. Form inputs with constraints
+2. Button state management (active class)
+3. Calculated results display
+4. Mathematical operations (percentage, division)
+5. Input wrapper pattern for icons/symbols
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +27,30 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 
+    ============================================
+    MAIN CONTAINER
+    ============================================ -->
     <div class="container">
         <h1>💵 Tip Calculator</h1>
         <p class="subtitle">Calculate tips and split bills easily</p>
 
+        <!-- 
+        ============================================
+        INPUT CARD
+        ============================================
+        All user inputs for calculation
+        -->
         <div class="card">
+            <!-- 
+            ============================================
+            BILL AMOUNT INPUT
+            ============================================
+            LEARNING: 
+            - type="number" for numeric keyboard on mobile
+            - step="0.01" allows decimal values (cents)
+            - min="0" prevents negative values
+            -->
             <div class="input-group">
                 <label for="billAmount">Bill Amount</label>
                 <div class="input-wrapper">
@@ -26,6 +65,14 @@
                 </div>
             </div>
 
+            <!-- 
+            ============================================
+            TIP PERCENTAGE SELECTOR
+            ============================================
+            LEARNING: Quick-select buttons + custom input
+            - data-tip attribute stores percentage value
+            - .active class highlights selected button
+            -->
             <div class="input-group">
                 <label for="tipPercentage">Tip Percentage</label>
                 <div class="tip-buttons">
@@ -35,6 +82,7 @@
                     <button class="tip-btn" data-tip="20">20%</button>
                     <button class="tip-btn" data-tip="25">25%</button>
                 </div>
+                <!-- Custom percentage input -->
                 <div class="input-wrapper">
                     <input 
                         type="number" 
@@ -48,6 +96,12 @@
                 </div>
             </div>
 
+            <!-- 
+            ============================================
+            NUMBER OF PEOPLE
+            ============================================
+            LEARNING: min="1" ensures at least 1 person
+            -->
             <div class="input-group">
                 <label for="numberOfPeople">Number of People</label>
                 <div class="input-wrapper">
@@ -63,6 +117,13 @@
             </div>
         </div>
 
+        <!-- 
+        ============================================
+        RESULTS CARD
+        ============================================
+        LEARNING: JavaScript updates these values
+        Gradient background for emphasis
+        -->
         <div class="results-card">
             <div class="result-row">
                 <div class="result-label">Tip Amount</div>
@@ -72,7 +133,9 @@
                 <div class="result-label">Total Amount</div>
                 <div class="result-value" id="totalAmount">$0.00</div>
             </div>
+            <!-- Visual separator -->
             <div class="divider"></div>
+            <!-- Highlighted result -->
             <div class="result-row highlight">
                 <div class="result-label">Amount Per Person</div>
                 <div class="result-value large" id="perPersonAmount">$0.00</div>
@@ -85,4 +148,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,3 +1,21 @@
+<!--
+============================================
+DIGITAL CLOCK & STOPWATCH - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- Two-section layout (Clock + Stopwatch)
+- Real-time updates via JavaScript
+- Disabled attribute for button control
+- Dynamic content insertion (laps)
+
+KEY CONCEPTS:
+1. Dual functionality in single app
+2. Button state management (enabled/disabled)
+3. Monospace fonts for consistent number display
+4. Dynamic list generation for lap times
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,26 +25,71 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 
+    ============================================
+    MAIN CONTAINER
+    ============================================
+    Two-section layout with clock and stopwatch
+    -->
     <div class="container">
+        
+        <!-- 
+        ============================================
+        CLOCK SECTION
+        ============================================
+        Real-time clock display with date
+        Updated every second by JavaScript
+        -->
         <div class="clock-section">
             <h2>Digital Clock</h2>
+            
+            <!-- Clock Display: Shows current time HH:MM:SS -->
             <div class="clock" id="clock">00:00:00</div>
+            
+            <!-- Date Display: Shows full date -->
             <div class="date" id="date">Loading...</div>
         </div>
 
+        <!-- 
+        ============================================
+        STOPWATCH SECTION
+        ============================================
+        Interactive stopwatch with lap functionality
+        -->
         <div class="stopwatch-section">
             <h2>Stopwatch</h2>
+            
+            <!-- Stopwatch Display: HH:MM:SS.mmm format -->
             <div class="stopwatch-display" id="stopwatchDisplay">00:00:00.000</div>
+            
+            <!-- 
+            ============================================
+            CONTROL BUTTONS
+            ============================================
+            LEARNING: disabled attribute prevents interaction
+            - Start: Always available
+            - Pause: Only when running (disabled by default)
+            - Reset: Always available
+            - Lap: Only when running (disabled by default)
+            -->
             <div class="controls">
                 <button class="btn btn-start" id="startBtn">Start</button>
                 <button class="btn btn-pause" id="pauseBtn" disabled>Pause</button>
                 <button class="btn btn-reset" id="resetBtn">Reset</button>
                 <button class="btn btn-lap" id="lapBtn" disabled>Lap</button>
             </div>
+            
+            <!-- 
+            ============================================
+            LAPS CONTAINER
+            ============================================
+            LEARNING: Empty container filled dynamically by JavaScript
+            Lap times are inserted here when user clicks "Lap" button
+            -->
             <div class="laps" id="laps"></div>
         </div>
     </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
-

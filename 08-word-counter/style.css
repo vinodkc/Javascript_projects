@@ -1,3 +1,26 @@
+/*
+============================================
+WORD & CHARACTER COUNTER - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- Textarea styling and resize control
+- Grid with auto-fit for responsive cards
+- Hover lift effect (translateY)
+- Warning states (.limit-reached class)
+- Grid responsive breakpoints
+
+KEY TECHNIQUES:
+1. resize: vertical for textarea
+2. grid-template-columns: auto-fit
+3. transform: translateY() for card hover
+4. Conditional border colors
+5. min() function for responsive sizing
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -45,6 +68,9 @@ h3 {
     padding: 30px;
 }
 
+/* ============================================
+   TOOLBAR
+   ============================================ */
 .toolbar {
     display: flex;
     justify-content: space-between;
@@ -95,6 +121,11 @@ h3 {
     transform: translateY(-2px);
 }
 
+/* ============================================
+   TEXTAREA
+   ============================================
+   LEARNING: resize control and focus states
+*/
 textarea {
     width: 100%;
     padding: 20px;
@@ -102,7 +133,7 @@ textarea {
     border-radius: 10px;
     font-size: 1rem;
     font-family: inherit;
-    resize: vertical;
+    resize: vertical;  /* Allows vertical resize only */
     outline: none;
     transition: border-color 0.3s;
     line-height: 1.6;
@@ -112,8 +143,9 @@ textarea:focus {
     border-color: #667eea;
 }
 
+/* LEARNING: .limit-reached class applied when limit hit */
 textarea.limit-reached {
-    border-color: #fc8181;
+    border-color: #fc8181;  /* Red border */
 }
 
 .limit-warning {
@@ -130,6 +162,11 @@ textarea.limit-reached {
     display: none;
 }
 
+/* ============================================
+   STATISTICS GRID
+   ============================================
+   LEARNING: auto-fit creates responsive columns
+*/
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -146,6 +183,7 @@ textarea.limit-reached {
     transition: all 0.3s;
 }
 
+/* LEARNING: Hover lift effect */
 .stat-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -164,6 +202,9 @@ textarea.limit-reached {
     font-weight: 500;
 }
 
+/* ============================================
+   DETAILS SECTION
+   ============================================ */
 .details-section {
     background: white;
     padding: 20px;
@@ -195,6 +236,9 @@ textarea.limit-reached {
     font-weight: bold;
 }
 
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
 .action-buttons {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -224,6 +268,9 @@ textarea.limit-reached {
     transform: translateY(0);
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 768px) {
     .container {
         padding: 20px;
@@ -263,4 +310,3 @@ textarea.limit-reached {
         font-size: 2rem;
     }
 }
-

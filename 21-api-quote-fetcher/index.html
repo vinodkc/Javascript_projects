@@ -7,31 +7,66 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!--
+        ====================
+        MAIN CONTAINER
+        ====================
+        This div wraps the entire API Quote & Joke Fetcher application.
+        LEARNING: This project demonstrates multiple API integrations, tab systems,
+        favorites management, caching, and text-to-speech functionality.
+    -->
     <div class="container">
         <h1 class="main-title">🌐 API Quote & Joke Fetcher</h1>
         <p class="subtitle">Fetching inspiration from around the internet!</p>
 
+        <!--
+            ====================
+            TAB NAVIGATION
+            ====================
+            Switches between Quotes, Jokes, and Settings views.
+            'data-tab' attribute identifies which content section to show.
+            LEARNING: Tab UI pattern, data attributes for JavaScript interaction.
+        -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="quotes">💭 Quotes</button>
             <button class="tab-btn" data-tab="jokes">😄 Jokes</button>
             <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
         </div>
 
-        <!-- Quotes Tab -->
+        <!--
+            ====================
+            QUOTES TAB CONTENT
+            ====================
+            Displays inspirational quotes from multiple APIs.
+            Active tab shown with 'active' class.
+        -->
         <div class="tab-content active" id="quotes">
             <div class="card quote-card">
                 <div class="card-header">
                     <div class="quote-icon">"</div>
+                    <!--
+                        API Source Badge:
+                        Shows which API provided the current quote.
+                        LEARNING: Working with multiple API endpoints.
+                    -->
                     <div class="api-badge" id="quoteApiSource">Source: API</div>
                 </div>
 
-                <!-- Loading Spinner -->
+                <!--
+                    Loading Spinner:
+                    Displayed while fetching data from API.
+                    LEARNING: CSS animations for loading states.
+                -->
                 <div class="loading-spinner" id="quoteLoader">
                     <div class="spinner"></div>
                     <p>Fetching quote...</p>
                 </div>
 
-                <!-- Error Message -->
+                <!--
+                    Error Message:
+                    Shown if API request fails.
+                    LEARNING: Error handling in async operations.
+                -->
                 <div class="error-message" id="quoteError" style="display: none;">
                     <span class="error-icon">⚠️</span>
                     <p class="error-text">Failed to fetch quote</p>
@@ -113,13 +148,21 @@
                     <button class="btn-retry" onclick="retryJoke()">Retry</button>
                 </div>
 
-                <!-- Joke Display -->
+                <!--
+                    Joke Display Area:
+                    Shows joke setup and punchline (for two-part jokes).
+                    LEARNING: Handling different joke formats from various APIs.
+                -->
                 <div class="joke-display" id="jokeDisplay">
                     <p class="joke-text" id="jokeText">Ready to laugh? Click the button below!</p>
                     <p class="joke-punchline" id="jokePunchline" style="display: none;"></p>
                     <div class="joke-info" id="jokeInfo"></div>
                 </div>
                 
+                <!--
+                    Action Buttons:
+                    Generate new joke and interaction options.
+                -->
                 <div class="actions">
                     <button class="btn-generate" id="newJokeBtn">
                         <span class="btn-icon-left">🎲</span>
@@ -132,6 +175,11 @@
                     </div>
                 </div>
 
+                <!--
+                    API Selector:
+                    Choose which joke API to fetch from.
+                    LEARNING: Working with multiple API endpoints, fallback strategies.
+                -->
                 <div class="api-selector">
                     <label for="jokeApiSelect">Joke API:</label>
                     <select id="jokeApiSelect">
@@ -142,6 +190,11 @@
                     </select>
                 </div>
 
+                <!--
+                    Joke Rating System:
+                    User feedback with star ratings.
+                    LEARNING: Event delegation with data attributes.
+                -->
                 <div class="joke-rating" id="jokeRating">
                     <p>Rate this joke:</p>
                     <div class="stars">

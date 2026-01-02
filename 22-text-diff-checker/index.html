@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!--
+        ====================
+        MAIN CONTAINER
+        ====================
+        This div wraps the entire Text Diff Checker application.
+        LEARNING: This project demonstrates the Longest Common Subsequence (LCS) algorithm,
+        file handling, character-level and line-level diffing, and advanced string comparison.
+    -->
     <div class="container">
         <!-- Header -->
         <header class="header">
@@ -17,9 +25,20 @@
             <p class="subtitle">Find the differences between two text files</p>
         </header>
 
-        <!-- Toolbar -->
+        <!--
+            ====================
+            TOOLBAR
+            ====================
+            Main action buttons and comparison options.
+            LEARNING: Checkbox inputs for comparison settings.
+        -->
         <div class="toolbar">
             <div class="toolbar-left">
+                <!--
+                    Compare Button:
+                    Triggers the diff algorithm to find differences.
+                    LEARNING: LCS (Longest Common Subsequence) algorithm implementation.
+                -->
                 <button class="btn btn-primary" id="compareBtn">
                     <span class="icon">🔍</span>
                     Find Difference
@@ -28,11 +47,19 @@
                     <span class="icon">🗑️</span>
                     Clear All
                 </button>
+                <!--
+                    Swap Button:
+                    Exchanges content between left and right panels.
+                -->
                 <button class="btn btn-secondary" id="swapBtn" title="Swap texts">
                     <span class="icon">↔️</span>
                     Swap
                 </button>
             </div>
+            <!--
+                Comparison Options:
+                Toggle settings that affect how differences are detected.
+            -->
             <div class="toolbar-right">
                 <label class="toggle-label">
                     <input type="checkbox" id="ignoreCase">
@@ -49,11 +76,23 @@
             </div>
         </div>
 
-        <!-- Input Section -->
+        <!--
+            ====================
+            INPUT SECTION
+            ====================
+            Two text panels for entering/uploading text to compare.
+            LEARNING: File API for reading uploaded files, Clipboard API for pasting.
+        -->
         <div class="input-section" id="inputSection">
+            <!-- Left Panel (Original Text) -->
             <div class="input-panel">
                 <div class="panel-header">
                     <h3>Original Text</h3>
+                    <!--
+                        Panel Actions:
+                        Upload file, paste from clipboard, or clear text.
+                        LEARNING: FileReader API for reading file contents.
+                    -->
                     <div class="panel-actions">
                         <button class="btn-icon" id="uploadFile1" title="Upload file">
                             📁
@@ -64,6 +103,11 @@
                         <button class="btn-icon" id="clearText1" title="Clear">
                             ✕
                         </button>
+                        <!--
+                            Hidden File Input:
+                            Triggered programmatically by Upload button.
+                            'accept' attribute limits file types.
+                        -->
                         <input type="file" id="fileInput1" accept=".txt,.js,.html,.css,.json,.md" style="display: none;">
                     </div>
                 </div>
@@ -71,11 +115,16 @@
                     id="text1" 
                     class="text-input" 
                     placeholder="Enter or paste your original text here...&#10;&#10;You can also:&#10;• Upload a file using the 📁 button&#10;• Paste from clipboard using the 📋 button&#10;• Type or paste directly"></textarea>
+                <!--
+                    Character Count Display:
+                    Real-time statistics updated on input.
+                -->
                 <div class="char-count">
                     <span id="count1">0</span> characters, <span id="lines1">0</span> lines
                 </div>
             </div>
 
+            <!-- Right Panel (Changed Text) -->
             <div class="input-panel">
                 <div class="panel-header">
                     <h3>Changed Text</h3>
@@ -102,10 +151,22 @@
             </div>
         </div>
 
-        <!-- Results Section -->
+        <!--
+            ====================
+            RESULTS SECTION
+            ====================
+            Displays comparison results after diff algorithm runs.
+            Initially hidden with 'style="display: none;"'.
+            LEARNING: Dynamic content generation, LCS algorithm visualization.
+        -->
         <div class="results-section" id="resultsSection" style="display: none;">
             <div class="results-header">
                 <h2>Comparison Results</h2>
+                <!--
+                    Results Actions:
+                    Export, copy, or return to editing.
+                    LEARNING: Blob API for file downloads, Clipboard API for copying.
+                -->
                 <div class="results-actions">
                     <button class="btn btn-secondary" id="exportBtn">
                         <span class="icon">💾</span>
@@ -122,7 +183,11 @@
                 </div>
             </div>
 
-            <!-- Statistics -->
+            <!--
+                Statistics Bar:
+                Shows summary of differences found.
+                LEARNING: Calculating similarity percentage using LCS length.
+            -->
             <div class="stats-bar">
                 <div class="stat-item added">
                     <span class="stat-icon">+</span>
@@ -151,7 +216,11 @@
                 </div>
             </div>
 
-            <!-- Side-by-side View -->
+            <!--
+                Side-by-Side View:
+                Shows original and changed text in parallel columns.
+                LEARNING: CSS Grid for synchronized scrolling.
+            -->
             <div class="diff-view" id="sideBySideView">
                 <div class="diff-panel">
                     <div class="diff-panel-header">Original Text</div>
@@ -163,13 +232,20 @@
                 </div>
             </div>
 
-            <!-- Inline View -->
+            <!--
+                Inline View:
+                Shows unified diff format (like git diff).
+                LEARNING: Alternative visualization method for differences.
+            -->
             <div class="diff-view-inline" id="inlineView" style="display: none;">
                 <div class="diff-panel-header">Unified Diff View</div>
                 <div class="diff-content" id="inlineDiff"></div>
             </div>
 
-            <!-- Legend -->
+            <!--
+                Legend:
+                Explains color coding used in diff visualization.
+            -->
             <div class="legend">
                 <h3>Legend</h3>
                 <div class="legend-items">
@@ -193,7 +269,12 @@
             </div>
         </div>
 
-        <!-- Features Section -->
+        <!--
+            ====================
+            FEATURES SECTION
+            ====================
+            Highlights key capabilities of the diff checker.
+        -->
         <div class="features-section">
             <h2>Features</h2>
             <div class="features-grid">
@@ -236,9 +317,18 @@
         </footer>
     </div>
 
-    <!-- Notification Container -->
+    <!--
+        Notification Container:
+        Dynamically populated with toast notifications.
+        LEARNING: Creating notification systems with setTimeout for auto-dismiss.
+    -->
     <div id="notifications"></div>
 
+    <!--
+        Script Inclusion:
+        The JavaScript file is linked at the end of the body to ensure all HTML elements are loaded
+        before the script attempts to access them, preventing potential errors.
+    -->
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,3 +1,7 @@
+<!--
+THEME SWITCHER - LEARNING: CSS Variables (:root), localStorage persistence,
+Color picker input, preset themes, light/dark/auto modes
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +17,7 @@
             <p class="subtitle">Personalize your experience with colors and themes</p>
         </header>
 
+        <!-- Theme Mode Selection: Light/Dark/Auto -->
         <div class="theme-section">
             <h2>🌓 Theme Mode</h2>
             <div class="theme-buttons">
@@ -31,6 +36,7 @@
             </div>
         </div>
 
+        <!-- Color Pickers: LEARNING: type="color" for native picker -->
         <div class="color-section">
             <h2>🎨 Custom Colors</h2>
             
@@ -60,6 +66,7 @@
                 </div>
             </div>
 
+            <!-- Preset Themes -->
             <h3>🎭 Preset Themes</h3>
             <div class="preset-themes">
                 <button class="preset-btn" data-preset="default">
@@ -105,6 +112,7 @@
             </div>
         </div>
 
+        <!-- Preview Section -->
         <div class="preview-section">
             <h2>👀 Preview</h2>
             <div class="preview-card">
@@ -115,12 +123,14 @@
             </div>
         </div>
 
+        <!-- Actions -->
         <div class="actions">
             <button class="action-btn" id="resetBtn">🔄 Reset to Default</button>
             <button class="action-btn" id="randomBtn">🎲 Random Colors</button>
             <button class="action-btn" id="exportBtn">💾 Export Theme</button>
         </div>
 
+        <!-- Theme Info Display -->
         <div class="info-panel">
             <h3>ℹ️ Current Theme Info</h3>
             <div class="info-grid">
@@ -147,4 +157,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

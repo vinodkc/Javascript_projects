@@ -1,108 +1,228 @@
+/*
+============================================
+CALCULATOR - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- CSS Reset with box-sizing
+- Flexbox for centering
+- CSS Grid for button layout
+- Linear gradients
+- CSS transitions
+- Pseudo-classes (:hover, :active)
+- Grid column spanning
+
+COLOR SCHEME:
+- Primary Purple: #667eea
+- Dark Purple: #764ba2
+- Display Dark: #2d3748
+- Clear Red: #fc8181
+- Delete Orange: #f6ad55
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================
+   LEARNING: Universal selector (*) targets all elements
+   - margin: 0, padding: 0 removes browser defaults
+   - box-sizing: border-box includes padding/border in width
+     (easier to calculate element sizes)
+*/
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ============================================
+   BODY LAYOUT
+   ============================================
+   LEARNING: Flexbox for perfect centering
+   - display: flex enables flexbox
+   - justify-content: center horizontal centering
+   - align-items: center vertical centering
+   - min-height: 100vh full viewport height
+   - linear-gradient: smooth color transition
+*/
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    
+    /* LEARNING: Linear gradient background
+       - 135deg: diagonal direction (top-left to bottom-right)
+       - Two color stops: purple (#667eea) to darker purple (#764ba2)
+       - Creates smooth color transition
+    */
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
+/* ============================================
+   CALCULATOR CONTAINER
+   ============================================
+   Main calculator wrapper with card styling
+*/
 .calculator {
     background: #fff;
+    
+    /* LEARNING: border-radius creates rounded corners */
     border-radius: 20px;
+    
+    /* LEARNING: box-shadow for depth effect
+       Format: x-offset y-offset blur spread color
+       - 0 10px: shadow below element
+       - 50px: large blur for soft shadow
+       - rgba(0, 0, 0, 0.2): black with 20% opacity
+    */
     box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
+    
+    /* LEARNING: overflow: hidden keeps content within rounded corners */
     overflow: hidden;
+    
     width: 320px;
 }
 
+/* ============================================
+   DISPLAY AREA
+   ============================================
+   Shows calculator input and results
+*/
 .display {
-    background: #2d3748;
-    color: #fff;
-    font-size: 2.5rem;
+    background: #2d3748;  /* Dark background */
+    color: #fff;          /* White text */
+    font-size: 2.5rem;    /* Large text (40px) */
     padding: 30px;
-    text-align: right;
-    min-height: 100px;
+    text-align: right;    /* Calculator-style right alignment */
+    min-height: 100px;    /* Minimum height for consistency */
+    
+    /* LEARNING: Text wrapping for long numbers
+       - word-wrap: break-word allows breaking within words
+       - word-break: break-all breaks at any character if needed
+    */
     word-wrap: break-word;
     word-break: break-all;
 }
 
+/* ============================================
+   BUTTON GRID
+   ============================================
+   LEARNING: CSS Grid for button layout
+*/
 .buttons {
+    /* LEARNING: CSS Grid creates 2D layout
+       - display: grid enables grid layout
+       - repeat(4, 1fr): 4 equal columns (1fr = 1 fraction of space)
+       - gap: space between grid items
+    */
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1px;
+    
+    /* LEARNING: Background color shows as grid lines between buttons */
     background: #e2e8f0;
     padding: 1px;
 }
 
+/* ============================================
+   BASE BUTTON STYLES
+   ============================================
+   Applied to all calculator buttons
+*/
 .btn {
     background: #fff;
-    border: none;
+    border: none;           /* Remove default button border */
     padding: 25px;
-    font-size: 1.5rem;
-    cursor: pointer;
+    font-size: 1.5rem;      /* 24px */
+    cursor: pointer;        /* Show hand cursor on hover */
+    
+    /* LEARNING: Transition for smooth hover effects
+       - all: applies to all properties
+       - 0.2s: duration of transition
+       - Background and transform changes will be smooth
+    */
     transition: all 0.2s;
 }
 
+/* LEARNING: :hover pseudo-class triggers on mouse over */
 .btn:hover {
-    background: #f7fafc;
+    background: #f7fafc;  /* Slightly darker on hover */
 }
 
+/* LEARNING: :active pseudo-class triggers while clicking
+   - transform: scale(0.95) shrinks button to 95% size
+   - Creates "pressed" effect
+*/
 .btn:active {
     transform: scale(0.95);
 }
 
+/* ============================================
+   BUTTON VARIANTS
+   ============================================
+   Different styles for different button types
+*/
+
+/* Number buttons: Default styling with dark text */
 .btn-number {
     color: #2d3748;
 }
 
+/* Operator buttons: Light background with purple text */
 .btn-operator {
-    background: #edf2f7;
-    color: #667eea;
+    background: #edf2f7;  /* Light gray */
+    color: #667eea;       /* Purple */
     font-weight: bold;
 }
 
 .btn-operator:hover {
-    background: #e2e8f0;
+    background: #e2e8f0;  /* Slightly darker on hover */
 }
 
+/* Clear button: Red background, spans 2 columns */
 .btn-clear {
-    background: #fc8181;
+    background: #fc8181;  /* Red */
     color: #fff;
     font-weight: bold;
+    
+    /* LEARNING: grid-column: span 2 makes button take 2 columns
+       This makes the AC button twice as wide
+    */
     grid-column: span 2;
 }
 
 .btn-clear:hover {
-    background: #f56565;
+    background: #f56565;  /* Darker red on hover */
 }
 
+/* Delete button: Orange background */
 .btn-delete {
-    background: #f6ad55;
+    background: #f6ad55;  /* Orange */
     color: #fff;
     font-weight: bold;
 }
 
 .btn-delete:hover {
-    background: #ed8936;
+    background: #ed8936;  /* Darker orange on hover */
 }
 
+/* Equals button: Purple background (primary color) */
 .btn-equals {
-    background: #667eea;
+    background: #667eea;  /* Purple */
     color: #fff;
     font-weight: bold;
 }
 
 .btn-equals:hover {
-    background: #5a67d8;
+    background: #5a67d8;  /* Darker purple on hover */
 }
 
+/* Zero button: Spans 2 columns like a traditional calculator */
 .btn-zero {
+    /* LEARNING: Makes 0 button wider (spans 2 columns)
+       Same as btn-clear for visual consistency
+    */
     grid-column: span 2;
 }
 

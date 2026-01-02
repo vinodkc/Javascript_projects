@@ -1,23 +1,41 @@
+/*
+ * ========================================
+ * GLOBAL RESET & BASE STYLES
+ * ========================================
+ * Sets up basic styles and a CSS reset for consistency.
+ */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font stack */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient background */
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
+    padding: 20px; /* Add some padding around the container */
+    color: #333; /* Dark text color */
+    /* LEARNING: Flexbox for layout, linear-gradient for backgrounds */
 }
 
+/*
+ * ========================================
+ * CONTAINER
+ * ========================================
+ * Main wrapper for the application content.
+ */
 .container {
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 1400px; /* Wide layout for side-by-side diff */
+    margin: 0 auto; /* Center horizontally */
 }
 
-/* Header */
+/*
+ * ========================================
+ * HEADER SECTION
+ * ========================================
+ * Styles for the logo, title, and subtitle.
+ */
 .header {
     text-align: center;
     color: white;

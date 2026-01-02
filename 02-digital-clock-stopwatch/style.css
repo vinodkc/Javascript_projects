@@ -1,9 +1,39 @@
+/*
+============================================
+DIGITAL CLOCK & STOPWATCH - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- Flexbox column layout
+- Monospace fonts for consistent digits
+- Button disabled states
+- Scroll container for lap list
+- CSS animations (slideIn)
+- Responsive design with media queries
+
+COLOR SCHEME:
+- Blue gradient: #1e3c72 to #2a5298
+- Green (Start): #48bb78
+- Orange (Pause): #ed8936
+- Red (Reset): #fc8181
+- Blue (Lap): #4299e1
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ============================================
+   BODY LAYOUT
+   ============================================
+   LEARNING: Flexbox centering with padding
+   - padding: 20px ensures content doesn't touch edges
+*/
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
@@ -14,6 +44,12 @@ body {
     padding: 20px;
 }
 
+/* ============================================
+   MAIN CONTAINER
+   ============================================
+   LEARNING: flex-direction: column stacks items vertically
+   - gap: 30px adds space between clock and stopwatch sections
+*/
 .container {
     display: flex;
     flex-direction: column;
@@ -22,6 +58,12 @@ body {
     width: 100%;
 }
 
+/* ============================================
+   SECTION CARDS
+   ============================================
+   LEARNING: rgba() for semi-transparent backgrounds
+   - rgba(255, 255, 255, 0.95) = white with 95% opacity
+*/
 .clock-section,
 .stopwatch-section {
     background: rgba(255, 255, 255, 0.95);
@@ -37,6 +79,12 @@ h2 {
     font-size: 1.8rem;
 }
 
+/* ============================================
+   CLOCK DISPLAY
+   ============================================
+   LEARNING: Monospace fonts keep numbers aligned
+   - 'Courier New' ensures all digits have same width
+*/
 .clock {
     font-size: 4rem;
     font-weight: bold;
@@ -50,23 +98,36 @@ h2 {
     color: #4a5568;
 }
 
+/* ============================================
+   STOPWATCH DISPLAY
+   ============================================
+   LEARNING: letter-spacing improves readability
+*/
 .stopwatch-display {
     font-size: 3.5rem;
     font-weight: bold;
     color: #2d3748;
     font-family: 'Courier New', monospace;
     margin-bottom: 30px;
-    letter-spacing: 2px;
+    letter-spacing: 2px;  /* Adds space between characters */
 }
 
+/* ============================================
+   CONTROL BUTTONS
+   ============================================
+   LEARNING: flex-wrap allows buttons to stack on small screens
+*/
 .controls {
     display: flex;
     gap: 15px;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: wrap;  /* Buttons wrap to new line if needed */
     margin-bottom: 20px;
 }
 
+/* ============================================
+   BASE BUTTON STYLES
+   ============================================ */
 .btn {
     padding: 12px 30px;
     font-size: 1rem;
@@ -75,26 +136,39 @@ h2 {
     cursor: pointer;
     font-weight: 600;
     transition: all 0.3s;
-    text-transform: uppercase;
+    text-transform: uppercase;  /* Converts text to UPPERCASE */
     letter-spacing: 1px;
 }
 
+/* LEARNING: :disabled pseudo-class styles disabled buttons
+   - opacity: 0.5 makes button look faded
+   - cursor: not-allowed shows "not allowed" cursor
+*/
 .btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }
 
+/* ============================================
+   BUTTON VARIANTS
+   ============================================
+   Different colors for different actions
+*/
+
+/* Start button: Green */
 .btn-start {
     background: #48bb78;
     color: white;
 }
 
+/* LEARNING: :not(:disabled) only applies hover when enabled */
 .btn-start:hover:not(:disabled) {
     background: #38a169;
-    transform: translateY(-2px);
+    transform: translateY(-2px);  /* Lift button up */
     box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
 }
 
+/* Pause button: Orange */
 .btn-pause {
     background: #ed8936;
     color: white;
@@ -106,6 +180,7 @@ h2 {
     box-shadow: 0 5px 15px rgba(237, 137, 54, 0.4);
 }
 
+/* Reset button: Red (always enabled) */
 .btn-reset {
     background: #fc8181;
     color: white;
@@ -117,6 +192,7 @@ h2 {
     box-shadow: 0 5px 15px rgba(252, 129, 129, 0.4);
 }
 
+/* Lap button: Blue */
 .btn-lap {
     background: #4299e1;
     color: white;
@@ -128,12 +204,23 @@ h2 {
     box-shadow: 0 5px 15px rgba(66, 153, 225, 0.4);
 }
 
+/* ============================================
+   LAPS CONTAINER
+   ============================================
+   LEARNING: Scrollable container with fixed height
+   - overflow-y: auto adds vertical scrollbar when needed
+*/
 .laps {
     max-height: 200px;
-    overflow-y: auto;
+    overflow-y: auto;  /* Scrollbar appears if content exceeds height */
     margin-top: 20px;
 }
 
+/* ============================================
+   LAP ITEMS
+   ============================================
+   Dynamically created by JavaScript
+*/
 .lap-item {
     display: flex;
     justify-content: space-between;
@@ -142,6 +229,8 @@ h2 {
     background: #edf2f7;
     border-radius: 8px;
     font-family: 'Courier New', monospace;
+    
+    /* LEARNING: Animation applied when element is created */
     animation: slideIn 0.3s ease;
 }
 
@@ -154,20 +243,32 @@ h2 {
     color: #4a5568;
 }
 
+/* ============================================
+   ANIMATIONS
+   ============================================
+   LEARNING: @keyframes defines reusable animations
+   - from/to specify start and end states
+*/
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
+        transform: translateY(-10px);  /* Start above final position */
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0);      /* End at normal position */
     }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================
+   LEARNING: Media queries adapt layout for small screens
+   - max-width: 600px targets mobile devices
+*/
 @media (max-width: 600px) {
     .clock {
-        font-size: 3rem;
+        font-size: 3rem;  /* Smaller on mobile */
     }
     
     .stopwatch-display {
@@ -175,12 +276,11 @@ h2 {
     }
     
     .controls {
-        gap: 10px;
+        gap: 10px;  /* Less space between buttons */
     }
     
     .btn {
-        padding: 10px 20px;
+        padding: 10px 20px;  /* Smaller buttons */
         font-size: 0.9rem;
     }
 }
-

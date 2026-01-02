@@ -1,3 +1,25 @@
+<!--
+============================================
+QUOTE & JOKE GENERATOR - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- Tab-based interface (multi-function app)
+- API integration for quotes and jokes
+- Favorite/bookmark functionality
+- Social media sharing
+- Star rating system
+- LocalStorage for favorites
+
+KEY CONCEPTS:
+1. Tab switching (single-page app pattern)
+2. Async data fetching from APIs
+3. Event delegation for dynamic elements
+4. Social media integration (Twitter)
+5. LocalStorage persistence
+6. Dynamic list management
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,18 +29,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 
+    ============================================
+    MAIN CONTAINER
+    ============================================ -->
     <div class="container">
+        <!-- 
+        ============================================
+        TAB NAVIGATION
+        ============================================
+        LEARNING: data-tab attribute links buttons to content sections
+        JavaScript uses this for tab switching
+        -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="quotes">💭 Quotes</button>
             <button class="tab-btn" data-tab="jokes">😄 Jokes</button>
         </div>
 
+        <!-- 
+        ============================================
+        QUOTES TAB CONTENT
+        ============================================
+        LEARNING: .active class controls visibility
+        Only one tab-content is active at a time
+        -->
         <div class="tab-content active" id="quotes">
             <div class="card quote-card">
+                <!-- Decorative quotation mark -->
                 <div class="quote-icon">"</div>
+                
+                <!-- 
+                ============================================
+                QUOTE DISPLAY
+                ============================================
+                Content updated by JavaScript via API
+                -->
                 <p class="quote-text" id="quoteText">Click the button below to get inspired!</p>
                 <p class="quote-author" id="quoteAuthor">- Author</p>
                 
+                <!-- 
+                ============================================
+                ACTION BUTTONS
+                ============================================
+                Multiple actions for the current quote
+                -->
                 <div class="actions">
                     <button class="btn-generate" id="newQuoteBtn">New Quote</button>
                     <div class="action-buttons">
@@ -28,6 +82,13 @@
                     </div>
                 </div>
 
+                <!-- 
+                ============================================
+                CATEGORY SELECTOR
+                ============================================
+                LEARNING: <select> dropdown for filtering quotes
+                JavaScript uses selected value for API requests
+                -->
                 <div class="quote-category">
                     <label for="quoteCategory">Category:</label>
                     <select id="quoteCategory">
@@ -40,14 +101,28 @@
                 </div>
             </div>
 
+            <!-- 
+            ============================================
+            FAVORITES SECTION
+            ============================================
+            LEARNING: Persistent storage using LocalStorage
+            Favorites are saved and restored across sessions
+            -->
             <div class="favorites-section">
                 <h3>❤️ Favorite Quotes</h3>
                 <div class="favorites-list" id="favoriteQuotes">
+                    <!-- Empty state message -->
                     <p class="empty-favorites">No favorites yet. Click the heart icon to add quotes!</p>
                 </div>
             </div>
         </div>
 
+        <!-- 
+        ============================================
+        JOKES TAB CONTENT
+        ============================================
+        Separate section for joke generation
+        -->
         <div class="tab-content" id="jokes">
             <div class="card joke-card">
                 <div class="joke-icon">😄</div>
@@ -61,6 +136,13 @@
                     </div>
                 </div>
 
+                <!-- 
+                ============================================
+                JOKE RATING SYSTEM
+                ============================================
+                LEARNING: data-rating attribute stores star value
+                Interactive rating with visual feedback
+                -->
                 <div class="joke-rating" id="jokeRating">
                     <p>Rate this joke:</p>
                     <div class="stars">
@@ -78,4 +160,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,3 +1,23 @@
+<!--
+============================================
+BMI & AGE CALCULATOR - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- Dual calculator in single app (tabs)
+- Unit system toggle (metric/imperial)
+- Date input for age calculation
+- Visual BMI chart with color coding
+- Detailed age breakdown
+
+KEY CONCEPTS:
+1. Tab-based interface
+2. Conditional input display (metric vs imperial)
+3. Visual data representation (BMI chart)
+4. Date calculations
+5. Color-coded results
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,20 +30,37 @@
     <div class="container">
         <h1>🏥 Health Calculator</h1>
         
+        <!-- Tab Navigation -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="bmi">BMI Calculator</button>
             <button class="tab-btn" data-tab="age">Age Calculator</button>
         </div>
 
+        <!-- 
+        ============================================
+        BMI CALCULATOR TAB
+        ============================================ -->
         <div class="tab-content active" id="bmi">
             <div class="card">
                 <h2>Body Mass Index (BMI)</h2>
                 
+                <!-- 
+                ============================================
+                UNIT SYSTEM TOGGLE
+                ============================================
+                LEARNING: data-unit attribute for JavaScript
+                -->
                 <div class="unit-toggle">
                     <button class="unit-btn active" data-unit="metric">Metric</button>
                     <button class="unit-btn" data-unit="imperial">Imperial</button>
                 </div>
 
+                <!-- 
+                ============================================
+                METRIC INPUTS
+                ============================================
+                LEARNING: Shown/hidden based on unit selection
+                -->
                 <div id="metricInputs" class="unit-inputs">
                     <div class="input-group">
                         <label for="heightCm">Height (cm)</label>
@@ -35,6 +72,12 @@
                     </div>
                 </div>
 
+                <!-- 
+                ============================================
+                IMPERIAL INPUTS
+                ============================================
+                LEARNING: .hidden class controlled by JavaScript
+                -->
                 <div id="imperialInputs" class="unit-inputs hidden">
                     <div class="input-group">
                         <label for="heightFt">Height (feet)</label>
@@ -52,11 +95,18 @@
 
                 <button class="btn-calculate" id="calculateBMI">Calculate BMI</button>
 
+                <!-- 
+                ============================================
+                BMI RESULTS
+                ============================================
+                LEARNING: Visual chart with color-coded categories
+                -->
                 <div class="result-card hidden" id="bmiResult">
                     <div class="result-value" id="bmiValue">0</div>
                     <div class="result-category" id="bmiCategory">Normal</div>
                     <div class="result-description" id="bmiDescription">Your BMI is in the normal range</div>
                     
+                    <!-- BMI Category Chart -->
                     <div class="bmi-chart">
                         <div class="chart-bar underweight">
                             <span>Underweight</span>
@@ -79,10 +129,20 @@
             </div>
         </div>
 
+        <!-- 
+        ============================================
+        AGE CALCULATOR TAB
+        ============================================ -->
         <div class="tab-content" id="age">
             <div class="card">
                 <h2>Age Calculator</h2>
                 
+                <!-- 
+                ============================================
+                DATE INPUT
+                ============================================
+                LEARNING: type="date" provides date picker
+                -->
                 <div class="input-group">
                     <label for="birthdate">Date of Birth</label>
                     <input type="date" id="birthdate">
@@ -90,7 +150,14 @@
 
                 <button class="btn-calculate" id="calculateAge">Calculate Age</button>
 
+                <!-- 
+                ============================================
+                AGE RESULTS
+                ============================================
+                Detailed age breakdown with multiple metrics
+                -->
                 <div class="result-card hidden" id="ageResult">
+                    <!-- Primary age display (Years, Months, Days) -->
                     <div class="age-display">
                         <div class="age-item">
                             <div class="age-number" id="years">0</div>
@@ -106,6 +173,7 @@
                         </div>
                     </div>
                     
+                    <!-- Additional age details -->
                     <div class="age-details">
                         <div class="detail-item">
                             <span class="detail-label">Total Months:</span>
@@ -136,4 +204,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

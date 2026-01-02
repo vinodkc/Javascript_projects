@@ -1,3 +1,9 @@
+/*
+UI COMPONENTS - LEARNING: Common patterns - modals (fixed overlay), 
+accordion (max-height transition), tabs (content switching)
+Key: backdrop-filter, transform: rotate() for icons, ::after for tab indicator
+*/
+
 * {
     margin: 0;
     padding: 0;
@@ -90,6 +96,7 @@ h2 {
     background: #f56565;
 }
 
+/* MODAL: Fixed overlay */
 .modal {
     display: none;
     position: fixed;
@@ -198,6 +205,7 @@ h2 {
     flex: 1;
 }
 
+/* ACCORDION: max-height transition for smooth expand/collapse */
 .accordion {
     display: flex;
     flex-direction: column;
@@ -242,7 +250,7 @@ h2 {
 }
 
 .accordion-item.active .accordion-icon {
-    transform: rotate(45deg);
+    transform: rotate(45deg);  /* + becomes × */
 }
 
 .accordion-content {
@@ -261,6 +269,7 @@ h2 {
     line-height: 1.6;
 }
 
+/* TABS: Content switching */
 .tabs-container {
     border: 2px solid #e2e8f0;
     border-radius: 10px;
@@ -389,4 +398,3 @@ h2 {
         flex-direction: column;
     }
 }
-

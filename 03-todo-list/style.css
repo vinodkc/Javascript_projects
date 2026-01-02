@@ -1,9 +1,38 @@
+/*
+============================================
+TO-DO LIST APP - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- Input focus states
+- Dynamic list item styling
+- Hover animations (translateX)
+- Completed task styling (opacity, line-through)
+- Checkbox customization (accent-color)
+- Empty state design
+- Responsive layout
+
+COLOR SCHEME:
+- Primary: #667eea (purple)
+- Light background: #f7fafc
+- Text: #2d3748
+- Muted: #a0aec0
+- Delete: #fc8181
+- Edit: #4299e1
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* ============================================
+   BODY LAYOUT
+   ============================================ */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -11,9 +40,12 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: flex-start;  /* Align to top for scrolling */
 }
 
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
 .container {
     background: white;
     border-radius: 20px;
@@ -31,6 +63,12 @@ h1 {
     font-size: 2.5rem;
 }
 
+/* ============================================
+   INPUT SECTION
+   ============================================
+   LEARNING: Flexbox for input + button layout
+   - flex: 1 makes input take all available space
+*/
 .input-section {
     display: flex;
     gap: 10px;
@@ -38,19 +76,23 @@ h1 {
 }
 
 #taskInput {
-    flex: 1;
+    flex: 1;  /* Takes remaining space after button */
     padding: 15px;
     border: 2px solid #e2e8f0;
     border-radius: 10px;
     font-size: 1rem;
-    outline: none;
+    outline: none;  /* Remove default blue outline */
     transition: border-color 0.3s;
 }
 
+/* LEARNING: :focus pseudo-class applies when input is active */
 #taskInput:focus {
-    border-color: #667eea;
+    border-color: #667eea;  /* Purple border when typing */
 }
 
+/* ============================================
+   BUTTONS
+   ============================================ */
 .btn {
     padding: 15px 30px;
     border: none;
@@ -72,6 +114,11 @@ h1 {
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
+/* ============================================
+   FILTER SECTION
+   ============================================
+   LEARNING: Multiple button states (normal, hover, active)
+*/
 .filter-section {
     display: flex;
     gap: 10px;
@@ -83,7 +130,7 @@ h1 {
     padding: 8px 20px;
     border: 2px solid #e2e8f0;
     background: white;
-    border-radius: 20px;
+    border-radius: 20px;  /* Pill-shaped buttons */
     cursor: pointer;
     transition: all 0.3s;
     font-weight: 500;
@@ -95,12 +142,16 @@ h1 {
     color: #667eea;
 }
 
+/* LEARNING: .active class shows selected filter */
 .filter-btn.active {
     background: #667eea;
     color: white;
     border-color: #667eea;
 }
 
+/* ============================================
+   STATISTICS BAR
+   ============================================ */
 .stats {
     display: flex;
     justify-content: space-between;
@@ -117,23 +168,32 @@ h1 {
 }
 
 .btn-clear {
-    background: none;
+    background: none;  /* Transparent background */
     border: none;
-    color: #fc8181;
+    color: #fc8181;  /* Red text */
     cursor: pointer;
     font-weight: 600;
     transition: color 0.3s;
 }
 
 .btn-clear:hover {
-    color: #f56565;
+    color: #f56565;  /* Darker red on hover */
 }
 
+/* ============================================
+   TASK LIST
+   ============================================ */
 .task-list {
-    list-style: none;
+    list-style: none;  /* Remove default bullet points */
     margin-bottom: 20px;
 }
 
+/* ============================================
+   TASK ITEMS
+   ============================================
+   LEARNING: Complex item with multiple child elements
+   - Checkbox + Text + Action buttons
+*/
 .task-item {
     display: flex;
     align-items: center;
@@ -143,37 +203,44 @@ h1 {
     border-radius: 10px;
     margin-bottom: 10px;
     transition: all 0.3s;
+    
+    /* LEARNING: Slide-in animation when task is created */
     animation: slideIn 0.3s ease;
 }
 
+/* LEARNING: Horizontal slide animation on hover */
 .task-item:hover {
-    transform: translateX(5px);
+    transform: translateX(5px);  /* Shift right 5px */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* LEARNING: .completed class applied by JavaScript */
 .task-item.completed {
-    opacity: 0.6;
+    opacity: 0.6;  /* Fade completed tasks */
 }
 
 .task-item.completed .task-text {
-    text-decoration: line-through;
-    color: #a0aec0;
+    text-decoration: line-through;  /* Strike through completed text */
+    color: #a0aec0;  /* Gray text */
 }
 
+/* LEARNING: accent-color changes checkbox color (modern CSS) */
 .task-checkbox {
     width: 20px;
     height: 20px;
     cursor: pointer;
-    accent-color: #667eea;
+    accent-color: #667eea;  /* Purple checkbox */
 }
 
+/* LEARNING: flex: 1 makes text take remaining space */
 .task-text {
     flex: 1;
     color: #2d3748;
     font-size: 1rem;
-    word-break: break-word;
+    word-break: break-word;  /* Break long words to prevent overflow */
 }
 
+/* LEARNING: .editing class applied when user edits task */
 .task-text.editing {
     border: 2px solid #667eea;
     border-radius: 5px;
@@ -181,6 +248,9 @@ h1 {
     outline: none;
 }
 
+/* ============================================
+   TASK ACTION BUTTONS
+   ============================================ */
 .task-actions {
     display: flex;
     gap: 10px;
@@ -196,33 +266,44 @@ h1 {
     transition: all 0.3s;
 }
 
+/* Edit button: Blue */
 .btn-edit {
     color: #4299e1;
 }
 
 .btn-edit:hover {
-    background: #bee3f8;
+    background: #bee3f8;  /* Light blue background on hover */
 }
 
+/* Delete button: Red */
 .btn-delete {
     color: #fc8181;
 }
 
 .btn-delete:hover {
-    background: #fed7d7;
+    background: #fed7d7;  /* Light red background on hover */
 }
 
+/* ============================================
+   EMPTY STATE
+   ============================================
+   LEARNING: Shown when no tasks exist
+*/
 .empty-state {
     text-align: center;
     padding: 40px;
-    color: #a0aec0;
+    color: #a0aec0;  /* Muted gray */
     font-style: italic;
 }
 
+/* LEARNING: .hidden class controlled by JavaScript */
 .empty-state.hidden {
     display: none;
 }
 
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -234,6 +315,9 @@ h1 {
     }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 600px) {
     .container {
         padding: 20px;
@@ -244,13 +328,14 @@ h1 {
         font-size: 2rem;
     }
 
+    /* Stack input and button vertically on mobile */
     .input-section {
         flex-direction: column;
     }
 
+    /* Stack stats vertically on mobile */
     .stats {
         flex-direction: column;
         gap: 10px;
     }
 }
-

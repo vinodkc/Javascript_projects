@@ -1,3 +1,24 @@
+<!--
+============================================
+PASSWORD GENERATOR & STRENGTH CHECKER - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- Password security concepts
+- Range slider for length selection
+- Checkbox options for character types
+- Password strength visualization
+- Show/hide password toggle
+
+KEY CONCEPTS:
+1. Random password generation
+2. Strength calculation algorithms
+3. Clipboard API
+4. Range input with dynamic value display
+5. Visual progress bars
+6. Password criteria validation
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,15 +31,26 @@
     <div class="container">
         <h1>🔐 Password Tool</h1>
         
+        <!-- Tab Navigation -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="generator">Generator</button>
             <button class="tab-btn" data-tab="checker">Strength Checker</button>
         </div>
 
+        <!-- 
+        ============================================
+        PASSWORD GENERATOR TAB
+        ============================================ -->
         <div class="tab-content active" id="generator">
             <div class="card">
                 <h2>Password Generator</h2>
                 
+                <!-- 
+                ============================================
+                PASSWORD DISPLAY
+                ============================================
+                LEARNING: readonly input prevents manual editing
+                -->
                 <div class="password-display">
                     <input 
                         type="text" 
@@ -31,7 +63,20 @@
                     </button>
                 </div>
 
+                <!-- 
+                ============================================
+                GENERATOR OPTIONS
+                ============================================ -->
                 <div class="options">
+                    <!-- 
+                    ============================================
+                    LENGTH SLIDER
+                    ============================================
+                    LEARNING: type="range" creates slider
+                    - min/max sets range
+                    - value sets initial position
+                    - Dynamic display shows current value
+                    -->
                     <div class="option-row">
                         <label for="passwordLength">Password Length: <span id="lengthValue">16</span></label>
                         <input 
@@ -43,6 +88,7 @@
                         >
                     </div>
 
+                    <!-- Character type checkboxes -->
                     <div class="option-row checkbox-row">
                         <label class="checkbox-label">
                             <input type="checkbox" id="includeUppercase" checked>
@@ -74,6 +120,12 @@
 
                 <button class="btn-generate" id="generateBtn">Generate Password</button>
 
+                <!-- 
+                ============================================
+                GENERATED PASSWORD STRENGTH
+                ============================================
+                Shows strength after generation
+                -->
                 <div class="generated-strength hidden" id="generatedStrength">
                     <div class="strength-label">Password Strength:</div>
                     <div class="strength-bar-container">
@@ -84,10 +136,20 @@
             </div>
         </div>
 
+        <!-- 
+        ============================================
+        PASSWORD STRENGTH CHECKER TAB
+        ============================================ -->
         <div class="tab-content" id="checker">
             <div class="card">
                 <h2>Password Strength Checker</h2>
                 
+                <!-- 
+                ============================================
+                PASSWORD INPUT WITH TOGGLE
+                ============================================
+                LEARNING: Toggle between password/text types
+                -->
                 <div class="input-group">
                     <label for="passwordInput">Enter Password to Check</label>
                     <div class="password-input-wrapper">
@@ -102,7 +164,13 @@
                     </div>
                 </div>
 
+                <!-- 
+                ============================================
+                STRENGTH RESULTS
+                ============================================
+                -->
                 <div class="strength-result hidden" id="strengthResult">
+                    <!-- Score circle (0-100) -->
                     <div class="strength-score">
                         <div class="score-circle" id="scoreCircle">
                             <span id="scoreValue">0</span>
@@ -111,10 +179,18 @@
                         <div class="score-label" id="scoreLabel">Weak</div>
                     </div>
 
+                    <!-- Visual strength bar -->
                     <div class="strength-bar-container">
                         <div class="strength-bar" id="strengthBar"></div>
                     </div>
 
+                    <!-- 
+                    ============================================
+                    CRITERIA CHECKLIST
+                    ============================================
+                    LEARNING: Shows which security criteria are met
+                    JavaScript adds .met class when satisfied
+                    -->
                     <div class="criteria-list">
                         <div class="criterion" id="criterion1">
                             <span class="criterion-icon">○</span>
@@ -147,4 +223,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,3 +1,23 @@
+<!--
+============================================
+PALINDROME & ANAGRAM CHECKER - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- String manipulation algorithms
+- Tab-based dual functionality
+- Example chips for quick testing
+- Visual result feedback (success/error states)
+- Detailed analysis display
+
+KEY CONCEPTS:
+1. Palindrome checking (reverse comparison)
+2. Anagram detection (letter frequency)
+3. String normalization (lowercase, remove spaces)
+4. Result visualization with icons/colors
+5. Interactive example buttons
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +30,18 @@
     <div class="container">
         <h1>🔤 String Analyzer</h1>
         
+        <!-- Tab Navigation -->
         <div class="tabs">
             <button class="tab-btn active" data-tab="palindrome">Palindrome Checker</button>
             <button class="tab-btn" data-tab="anagram">Anagram Checker</button>
         </div>
 
+        <!-- 
+        ============================================
+        PALINDROME CHECKER TAB
+        ============================================
+        LEARNING: Palindrome = reads same forwards/backwards
+        -->
         <div class="tab-content active" id="palindrome">
             <div class="card">
                 <h2>Palindrome Checker</h2>
@@ -32,6 +59,12 @@
 
                 <button class="btn-check" id="checkPalindrome">Check Palindrome</button>
 
+                <!-- 
+                ============================================
+                PALINDROME RESULTS
+                ============================================
+                LEARNING: Shows original, normalized, and reversed
+                -->
                 <div class="result-card hidden" id="palindromeResult">
                     <div class="result-icon" id="palindromeIcon">✓</div>
                     <div class="result-text" id="palindromeText">This is a palindrome!</div>
@@ -51,6 +84,13 @@
                     </div>
                 </div>
 
+                <!-- 
+                ============================================
+                EXAMPLE CHIPS
+                ============================================
+                LEARNING: data-example attribute stores text to test
+                Clicking fills input and triggers check
+                -->
                 <div class="examples">
                     <h3>Try these examples:</h3>
                     <div class="example-chips">
@@ -64,11 +104,18 @@
             </div>
         </div>
 
+        <!-- 
+        ============================================
+        ANAGRAM CHECKER TAB
+        ============================================
+        LEARNING: Anagrams = same letters, different order
+        -->
         <div class="tab-content" id="anagram">
             <div class="card">
                 <h2>Anagram Checker</h2>
                 <p class="description">Anagrams use the same letters rearranged</p>
                 
+                <!-- Two inputs for comparison -->
                 <div class="input-group">
                     <label for="anagramInput1">First Word/Phrase</label>
                     <input 
@@ -91,6 +138,7 @@
 
                 <button class="btn-check" id="checkAnagram">Check Anagram</button>
 
+                <!-- Anagram Results -->
                 <div class="result-card hidden" id="anagramResult">
                     <div class="result-icon" id="anagramIcon">✓</div>
                     <div class="result-text" id="anagramText">These are anagrams!</div>
@@ -110,6 +158,12 @@
                     </div>
                 </div>
 
+                <!-- 
+                ============================================
+                ANAGRAM EXAMPLES
+                ============================================
+                LEARNING: data-pair stores "word1,word2"
+                -->
                 <div class="examples">
                     <h3>Try these examples:</h3>
                     <div class="example-chips">
@@ -127,4 +181,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,40 +1,117 @@
+<!--
+============================================
+CALCULATOR - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- Semantic HTML5 structure
+- Data attributes for JavaScript interaction
+- Grid layout organization
+- BEM-style class naming
+
+KEY CONCEPTS:
+1. Data Attributes: Custom data-* attributes store values for JavaScript
+2. Button Grid: 4x5 grid layout using CSS Grid
+3. Accessibility: Descriptive button labels and clear structure
+4. Semantic Classes: Meaningful class names describe purpose
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Character encoding: UTF-8 supports all languages/symbols -->
     <meta charset="UTF-8">
+    
+    <!-- Viewport: Responsive design for mobile devices
+         width=device-width: Match screen width
+         initial-scale=1.0: No zoom on load -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Calculator</title>
+    
+    <!-- External CSS: Separates styling from structure -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 
+    ============================================
+    CALCULATOR CONTAINER
+    ============================================
+    Main wrapper for the entire calculator
+    -->
     <div class="calculator">
+        
+        <!-- 
+        ============================================
+        DISPLAY AREA
+        ============================================
+        Shows current input and calculation results
+        - id="display": JavaScript uses this to update content
+        - Initial value: 0
+        -->
         <div class="display" id="display">0</div>
+        
+        <!-- 
+        ============================================
+        BUTTON GRID
+        ============================================
+        4 columns × 5 rows = 20 buttons
+        Organized by function: numbers, operators, actions
+        
+        DATA ATTRIBUTES:
+        - data-number: Number or decimal buttons (0-9, .)
+        - data-operator: Math operations (+, -, *, /, %)
+        - data-action: Special actions (clear, delete, calculate)
+        
+        LEARNING: Data attributes provide clean way to store
+        button values without mixing logic into classes
+        -->
         <div class="buttons">
+            
+            <!-- ROW 1: Clear, Delete, Modulo, Divide -->
+            <!-- data-action: Used for non-calculation buttons -->
             <button class="btn btn-clear" data-action="clear">AC</button>
             <button class="btn btn-delete" data-action="delete">DEL</button>
+            
+            <!-- data-operator: Stores the actual operation symbol -->
             <button class="btn btn-operator" data-operator="%">%</button>
             <button class="btn btn-operator" data-operator="/">÷</button>
             
+            <!-- ROW 2: 7, 8, 9, Multiply -->
+            <!-- data-number: Stores the digit value -->
             <button class="btn btn-number" data-number="7">7</button>
             <button class="btn btn-number" data-number="8">8</button>
             <button class="btn btn-number" data-number="9">9</button>
             <button class="btn btn-operator" data-operator="*">×</button>
             
+            <!-- ROW 3: 4, 5, 6, Subtract -->
             <button class="btn btn-number" data-number="4">4</button>
             <button class="btn btn-number" data-number="5">5</button>
             <button class="btn btn-number" data-number="6">6</button>
             <button class="btn btn-operator" data-operator="-">−</button>
             
+            <!-- ROW 4: 1, 2, 3, Add -->
             <button class="btn btn-number" data-number="1">1</button>
             <button class="btn btn-number" data-number="2">2</button>
             <button class="btn btn-number" data-number="3">3</button>
             <button class="btn btn-operator" data-operator="+">+</button>
             
+            <!-- ROW 5: 0 (spans 2 columns), Decimal, Equals -->
+            <!-- btn-zero: Additional class for 0 to span 2 columns -->
             <button class="btn btn-number btn-zero" data-number="0">0</button>
             <button class="btn btn-number" data-number=".">.</button>
             <button class="btn btn-equals" data-action="calculate">=</button>
         </div>
     </div>
+    
+    <!-- 
+    ============================================
+    JAVASCRIPT
+    ============================================
+    External script loaded at end of body:
+    - Ensures DOM is fully loaded before script runs
+    - Best practice for performance
+    -->
     <script src="script.js"></script>
 </body>
 </html>

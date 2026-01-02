@@ -1,40 +1,54 @@
+/*
+ * ========================================
+ * GLOBAL RESET & BASE STYLES
+ * ========================================
+ * Sets up basic styles and a CSS reset for consistency.
+ */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    min-height: 100vh;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern, clean font stack */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradient background for visual appeal */
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
+    padding: 20px; /* Add some padding around the container */
+    display: flex; /* Use flexbox for easy centering of content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    /* LEARNING: Flexbox for layout, linear-gradient for backgrounds */
 }
 
+/*
+ * ========================================
+ * CONTAINER
+ * ========================================
+ * Styles for the main wrapper of the Rock Paper Scissors game.
+ */
 .container {
-    max-width: 800px;
-    width: 100%;
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2);
-    padding: 40px;
+    max-width: 800px; /* Maximum width for the container */
+    width: 100%; /* Takes full width up to max-width */
+    background: white; /* White background for the game card */
+    border-radius: 20px; /* Rounded corners */
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    padding: 40px; /* Inner padding */
+    /* LEARNING: box-shadow for depth, max-width for responsiveness */
 }
 
 h1 {
-    color: #2d3748;
-    text-align: center;
-    margin-bottom: 10px;
-    font-size: 2.5rem;
+    color: #2d3748; /* Dark text color for the main heading */
+    text-align: center; /* Center align the heading */
+    margin-bottom: 10px; /* Space below the heading */
+    font-size: 2.5rem; /* Large font size */
 }
 
 .subtitle {
-    text-align: center;
-    color: #718096;
-    margin-bottom: 30px;
-    font-size: 1.1rem;
+    text-align: center; /* Center align the subtitle */
+    color: #718096; /* Grey text color for subtitle */
+    margin-bottom: 30px; /* Space below subtitle */
+    font-size: 1.1rem; /* Font size for subtitle */
 }
 
 .scoreboard {

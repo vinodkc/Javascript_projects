@@ -1,3 +1,26 @@
+/*
+============================================
+PALINDROME & ANAGRAM CHECKER - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- Success/error state styling (border colors)
+- Monospace fonts for code-like display
+- word-break for long strings
+- Chip buttons with hover effects
+- Conditional coloring (.success, .error classes)
+
+KEY TECHNIQUES:
+1. Border color changes for result states
+2. Monospace fonts for comparing strings
+3. word-break: break-word for overflow
+4. Pill-shaped chips (border-radius: 20px)
+5. Transform animations on interaction
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -50,6 +73,9 @@ h3 {
     font-style: italic;
 }
 
+/* ============================================
+   TABS
+   ============================================ */
 .tabs {
     display: flex;
     gap: 10px;
@@ -95,6 +121,9 @@ h3 {
     padding: 30px;
 }
 
+/* ============================================
+   INPUTS
+   ============================================ */
 .input-group {
     margin-bottom: 20px;
 }
@@ -142,6 +171,11 @@ h3 {
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
+/* ============================================
+   RESULT CARD
+   ============================================
+   LEARNING: Border color changes based on result
+*/
 .result-card {
     background: white;
     border-radius: 10px;
@@ -154,12 +188,14 @@ h3 {
     display: none;
 }
 
+/* LEARNING: .success class for positive results */
 .result-card.success {
-    border: 3px solid #48bb78;
+    border: 3px solid #48bb78;  /* Green border */
 }
 
+/* LEARNING: .error class for negative results */
 .result-card.error {
-    border: 3px solid #fc8181;
+    border: 3px solid #fc8181;  /* Red border */
 }
 
 .result-icon {
@@ -182,6 +218,11 @@ h3 {
     color: #2d3748;
 }
 
+/* ============================================
+   RESULT DETAILS
+   ============================================
+   LEARNING: Shows normalized/reversed strings
+*/
 .result-details {
     background: #f7fafc;
     border-radius: 8px;
@@ -206,23 +247,29 @@ h3 {
     margin-bottom: 5px;
 }
 
+/* LEARNING: Monospace font for comparing strings */
 .detail-value {
     color: #2d3748;
     font-size: 1.1rem;
-    word-break: break-word;
+    word-break: break-word;  /* Break long words */
     font-family: 'Courier New', monospace;
     background: white;
     padding: 10px;
     border-radius: 5px;
 }
 
+/* ============================================
+   EXAMPLE CHIPS
+   ============================================
+   LEARNING: Pill-shaped buttons for quick testing
+*/
 .examples {
     margin-top: 20px;
 }
 
 .example-chips {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;  /* Wrap to multiple lines */
     gap: 10px;
 }
 
@@ -230,7 +277,7 @@ h3 {
     padding: 10px 15px;
     background: white;
     border: 2px solid #e2e8f0;
-    border-radius: 20px;
+    border-radius: 20px;  /* Pill shape */
     cursor: pointer;
     font-size: 0.9rem;
     color: #4a5568;
@@ -244,6 +291,9 @@ h3 {
     transform: translateY(-2px);
 }
 
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -255,6 +305,9 @@ h3 {
     }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 600px) {
     .container {
         padding: 20px;
@@ -280,4 +333,3 @@ h3 {
         font-size: 1.2rem;
     }
 }
-

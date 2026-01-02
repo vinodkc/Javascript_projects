@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!--
+        ====================
+        MAIN CONTAINER
+        ====================
+        This div wraps the entire Weather Widget application.
+        LEARNING: This project demonstrates API integration, geolocation, and dynamic UI updates.
+    -->
     <div class="container">
         <!-- Header -->
         <header>
@@ -14,12 +21,23 @@
             <p class="subtitle">Get real-time weather for any city</p>
         </header>
 
-        <!-- API Key Setup (shown if no key) -->
+        <!--
+            ====================
+            API KEY SETUP SECTION
+            ====================
+            Displayed on first use to guide users through OpenWeatherMap API setup.
+            'id="apiSetup"' is hidden once API key is saved to localStorage.
+            LEARNING: Teaching users about API authentication and setup process.
+        -->
         <div class="api-setup" id="apiSetup">
             <div class="setup-card">
                 <h2>🔑 API Key Setup</h2>
                 <p>To use this weather app, you need a free API key from OpenWeatherMap.</p>
                 
+                <!--
+                    Step-by-step Instructions:
+                    Visual guide for obtaining and configuring API key.
+                -->
                 <div class="setup-steps">
                     <div class="step">
                         <span class="step-number">1</span>
@@ -44,6 +62,10 @@
                     </div>
                 </div>
 
+                <!--
+                    API Key Input:
+                    Saves key to localStorage for persistent access.
+                -->
                 <div class="api-input-group">
                     <input 
                         type="text" 
@@ -53,6 +75,10 @@
                     <button class="btn btn-primary" id="saveApiKeyBtn">Save API Key</button>
                 </div>
 
+                <!--
+                    Demo Mode Option:
+                    Allows testing without API key using mock data.
+                -->
                 <div class="demo-mode">
                     <p><strong>Or try Demo Mode:</strong></p>
                     <button class="btn btn-secondary" id="demoModeBtn">Use Demo Data</button>
@@ -61,9 +87,19 @@
             </div>
         </div>
 
-        <!-- Weather App -->
+        <!--
+            ====================
+            WEATHER APP MAIN SECTION
+            ====================
+            Main application interface, shown after API key is configured.
+            Hidden initially with 'style="display: none;"'.
+        -->
         <div class="weather-app" id="weatherApp" style="display: none;">
-            <!-- Search Section -->
+            <!--
+                Search Section:
+                Allows users to search by city name or use geolocation.
+                LEARNING: Demonstrates Fetch API and Geolocation API usage.
+            -->
             <div class="search-section">
                 <div class="search-box">
                     <input 
@@ -76,34 +112,61 @@
                         Search
                     </button>
                 </div>
+                <!--
+                    Geolocation Button:
+                    Uses browser's Geolocation API to get user's coordinates.
+                    LEARNING: navigator.geolocation.getCurrentPosition()
+                -->
                 <button class="btn btn-secondary btn-location" id="locationBtn">
                     <span class="location-icon">📍</span>
                     Use My Location
                 </button>
             </div>
 
-            <!-- Loading Spinner -->
+            <!--
+                Loading Spinner:
+                Displayed while fetching weather data from API.
+                LEARNING: CSS animations for loading states.
+            -->
             <div class="loading" id="loading" style="display: none;">
                 <div class="spinner"></div>
                 <p>Fetching weather data...</p>
             </div>
 
-            <!-- Error Message -->
+            <!--
+                Error Message:
+                Shown when API request fails or city is not found.
+            -->
             <div class="error-message" id="errorMessage" style="display: none;">
                 <span class="error-icon">⚠️</span>
                 <p id="errorText">Something went wrong!</p>
             </div>
 
-            <!-- Weather Display -->
+            <!--
+                ====================
+                WEATHER DISPLAY SECTION
+                ====================
+                Shows current weather conditions and detailed information.
+                Initially hidden, displayed after successful API fetch.
+            -->
             <div class="weather-display" id="weatherDisplay" style="display: none;">
                 <!-- Current Weather -->
                 <div class="current-weather">
+                    <!--
+                        Location Information:
+                        Displays city name, country, and last update time.
+                    -->
                     <div class="location-info">
                         <h2 id="cityName">London</h2>
                         <p id="countryName">United Kingdom</p>
                         <p class="last-updated">Last updated: <span id="lastUpdated">--</span></p>
                     </div>
 
+                    <!--
+                        Main Weather Display:
+                        Shows weather icon, description, and current temperature.
+                        LEARNING: Dynamic image src from API response.
+                    -->
                     <div class="weather-main">
                         <div class="weather-icon-container">
                             <img id="weatherIcon" src="" alt="Weather Icon">
@@ -115,6 +178,11 @@
                         </div>
                     </div>
 
+                    <!--
+                        Weather Details Grid:
+                        Displays additional weather metrics in a responsive grid.
+                        LEARNING: CSS Grid for responsive layouts.
+                    -->
                     <div class="weather-details">
                         <div class="detail-item">
                             <span class="detail-icon">🌡️</span>
@@ -160,6 +228,11 @@
                         </div>
                     </div>
 
+                    <!--
+                        Sunrise/Sunset Times:
+                        Shows daily sun schedule from API data.
+                        LEARNING: Unix timestamp conversion to readable time.
+                    -->
                     <div class="sun-times">
                         <div class="sun-time">
                             <span class="sun-icon">🌅</span>
@@ -178,14 +251,21 @@
                     </div>
                 </div>
 
-                <!-- Recent Searches -->
+                <!--
+                    Recent Searches:
+                    Quick access to previously searched cities.
+                    Stored in localStorage for persistence.
+                -->
                 <div class="recent-searches">
                     <h3>Recent Searches</h3>
                     <div class="recent-list" id="recentList"></div>
                 </div>
             </div>
 
-            <!-- Settings -->
+            <!--
+                Settings Section:
+                Allows changing API key or clearing search history.
+            -->
             <div class="settings-section">
                 <button class="btn btn-secondary" id="changeApiKeyBtn">Change API Key</button>
                 <button class="btn btn-secondary" id="clearHistoryBtn">Clear History</button>
@@ -199,6 +279,11 @@
         </footer>
     </div>
 
+    <!--
+        Script Inclusion:
+        The JavaScript file is linked at the end of the body to ensure all HTML elements are loaded
+        before the script attempts to access them, preventing potential errors.
+    -->
     <script src="script.js"></script>
 </body>
 </html>

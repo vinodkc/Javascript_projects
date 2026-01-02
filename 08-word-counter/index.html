@@ -1,3 +1,24 @@
+<!--
+============================================
+WORD & CHARACTER COUNTER - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- Textarea for multi-line input
+- Character limit enforcement
+- Real-time statistics calculation
+- Grid layouts for metrics display
+- Text transformation actions
+
+KEY CONCEPTS:
+1. String analysis (words, sentences, paragraphs)
+2. Reading time calculation
+3. Textarea resize handling
+4. Character limit warnings
+5. File download (Blob API)
+6. Text manipulation functions
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +33,20 @@
         <p class="subtitle">Count words, characters, and analyze your text</p>
 
         <div class="card">
+            <!-- 
+            ============================================
+            TOOLBAR
+            ============================================
+            Controls above textarea
+            -->
             <div class="toolbar">
+                <!-- 
+                ============================================
+                CHARACTER LIMIT SELECTOR
+                ============================================
+                LEARNING: <select> dropdown for presets
+                JavaScript enforces the limit
+                -->
                 <div class="limit-controls">
                     <label for="characterLimit">Character Limit:</label>
                     <select id="characterLimit">
@@ -27,16 +61,31 @@
                 <button class="btn-clear" id="clearBtn">Clear Text</button>
             </div>
 
+            <!-- 
+            ============================================
+            TEXT INPUT
+            ============================================
+            LEARNING: 
+            - resize: vertical allows height adjustment only
+            - rows sets initial height
+            -->
             <textarea 
                 id="textInput" 
                 placeholder="Start typing or paste your text here..."
                 rows="12"
             ></textarea>
 
+            <!-- Warning when limit reached -->
             <div class="limit-warning hidden" id="limitWarning">
                 Character limit reached!
             </div>
 
+            <!-- 
+            ============================================
+            STATISTICS GRID
+            ============================================
+            LEARNING: auto-fit creates responsive grid
+            -->
             <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-value" id="characterCount">0</div>
@@ -64,6 +113,12 @@
                 </div>
             </div>
 
+            <!-- 
+            ============================================
+            ADDITIONAL DETAILS
+            ============================================
+            Secondary metrics
+            -->
             <div class="details-section">
                 <h3>Additional Information</h3>
                 <div class="details-grid">
@@ -86,6 +141,12 @@
                 </div>
             </div>
 
+            <!-- 
+            ============================================
+            ACTION BUTTONS
+            ============================================
+            Text manipulation and export
+            -->
             <div class="action-buttons">
                 <button class="btn-action" id="copyBtn">📋 Copy Text</button>
                 <button class="btn-action" id="downloadBtn">💾 Download</button>
@@ -98,4 +159,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

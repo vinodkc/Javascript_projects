@@ -1,3 +1,23 @@
+<!--
+============================================
+TO-DO LIST APP - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- Form input with validation (maxlength)
+- Filter buttons for different views
+- Empty state handling
+- Dynamic list generation
+- LocalStorage for data persistence
+
+KEY CONCEPTS:
+1. CRUD operations (Create, Read, Update, Delete)
+2. Data attributes for filtering (data-filter)
+3. Statistics display
+4. Conditional rendering (empty state)
+5. Accessibility (placeholder text)
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +27,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 
+    ============================================
+    MAIN CONTAINER
+    ============================================
+    Centered card with all todo functionality
+    -->
     <div class="container">
         <h1>My To-Do List</h1>
         
+        <!-- 
+        ============================================
+        INPUT SECTION
+        ============================================
+        LEARNING: maxlength attribute limits input to 100 characters
+        Prevents users from entering extremely long tasks
+        -->
         <div class="input-section">
             <input 
                 type="text" 
@@ -20,19 +53,49 @@
             <button id="addBtn" class="btn btn-add">Add</button>
         </div>
 
+        <!-- 
+        ============================================
+        FILTER BUTTONS
+        ============================================
+        LEARNING: data-filter attribute stores filter type
+        JavaScript uses this to filter displayed tasks
+        - all: Show all tasks
+        - active: Show only incomplete tasks
+        - completed: Show only finished tasks
+        -->
         <div class="filter-section">
             <button class="filter-btn active" data-filter="all">All</button>
             <button class="filter-btn" data-filter="active">Active</button>
             <button class="filter-btn" data-filter="completed">Completed</button>
         </div>
 
+        <!-- 
+        ============================================
+        STATISTICS BAR
+        ============================================
+        Shows task count and clear completed button
+        -->
         <div class="stats">
             <span id="totalTasks">0 tasks</span>
             <button id="clearCompleted" class="btn-clear">Clear Completed</button>
         </div>
 
+        <!-- 
+        ============================================
+        TASK LIST
+        ============================================
+        LEARNING: Empty <ul> that JavaScript populates dynamically
+        Tasks are added/removed from this list via DOM manipulation
+        -->
         <ul id="taskList" class="task-list"></ul>
 
+        <!-- 
+        ============================================
+        EMPTY STATE
+        ============================================
+        LEARNING: Conditional display
+        Shows when no tasks exist, hidden via JavaScript when tasks added
+        -->
         <div class="empty-state" id="emptyState">
             <p>No tasks yet. Add one above to get started!</p>
         </div>
@@ -41,4 +104,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

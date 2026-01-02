@@ -1,3 +1,23 @@
+<!--
+============================================
+QUIZ APP - HTML STRUCTURE
+============================================
+
+LEARNING POINTS:
+- Multi-screen application (start/quiz/result/review)
+- Progress tracking
+- Dynamic question/option generation
+- Score calculation
+- Answer review functionality
+
+KEY CONCEPTS:
+1. State management (which screen to show)
+2. Progress bar visualization
+3. Option selection with visual feedback
+4. Result summary with statistics
+5. Review mode for learning
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +30,17 @@
 <body>
     <div class="container">
         <div class="quiz-container" id="quizContainer">
+            <!-- 
+            ============================================
+            START SCREEN
+            ============================================
+            LEARNING: Initial screen with quiz information
+            -->
             <div class="start-screen" id="startScreen">
                 <h1>🎯 JavaScript Quiz</h1>
                 <p class="description">Test your JavaScript knowledge with 10 multiple-choice questions</p>
+                
+                <!-- Quiz info cards -->
                 <div class="quiz-info">
                     <div class="info-item">
                         <span class="info-icon">📋</span>
@@ -30,8 +58,21 @@
                 <button class="btn-start" id="startBtn">Start Quiz</button>
             </div>
 
+            <!-- 
+            ============================================
+            QUIZ SCREEN
+            ============================================
+            Active quiz with questions and answers
+            -->
             <div class="quiz-screen hidden" id="quizScreen">
                 <div class="quiz-header">
+                    <!-- 
+                    ============================================
+                    PROGRESS BAR
+                    ============================================
+                    LEARNING: Visual indicator of completion
+                    JavaScript updates width percentage
+                    -->
                     <div class="progress-bar">
                         <div class="progress-fill" id="progressBar"></div>
                     </div>
@@ -41,17 +82,37 @@
                     </div>
                 </div>
 
+                <!-- 
+                ============================================
+                QUESTION CONTAINER
+                ============================================
+                Dynamically filled by JavaScript
+                -->
                 <div class="question-container">
                     <h2 class="question" id="question">Question text will appear here</h2>
+                    <!-- Options generated dynamically -->
                     <div class="options" id="options"></div>
                 </div>
 
                 <button class="btn-next hidden" id="nextBtn">Next Question</button>
             </div>
 
+            <!-- 
+            ============================================
+            RESULT SCREEN
+            ============================================
+            Final score and summary
+            -->
             <div class="result-screen hidden" id="resultScreen">
                 <div class="result-icon" id="resultIcon">🎉</div>
                 <h2 class="result-title" id="resultTitle">Quiz Completed!</h2>
+                
+                <!-- 
+                ============================================
+                SCORE DISPLAY
+                ============================================
+                Large visual score with gradient background
+                -->
                 <div class="final-score">
                     <span class="score-label">Your Score</span>
                     <span class="score-value" id="finalScore">0/10</span>
@@ -60,6 +121,12 @@
 
                 <div class="score-message" id="scoreMessage">Excellent work!</div>
 
+                <!-- 
+                ============================================
+                ANSWER SUMMARY
+                ============================================
+                Correct vs incorrect breakdown
+                -->
                 <div class="answer-summary">
                     <h3>Answer Summary</h3>
                     <div class="summary-stats">
@@ -82,8 +149,16 @@
                 </div>
             </div>
 
+            <!-- 
+            ============================================
+            REVIEW SCREEN
+            ============================================
+            LEARNING: Shows all questions with correct answers
+            Helps users learn from mistakes
+            -->
             <div class="review-screen hidden" id="reviewScreen">
                 <h2>📝 Answer Review</h2>
+                <!-- Dynamically populated with review items -->
                 <div class="review-list" id="reviewList"></div>
                 <button class="btn-restart" id="backToResultBtn">Back to Results</button>
             </div>
@@ -93,4 +168,3 @@
     <script src="script.js"></script>
 </body>
 </html>
-

@@ -1,3 +1,26 @@
+/*
+============================================
+BMI & AGE CALCULATOR - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- Color-coded BMI categories
+- Grid layouts for age display
+- .active class for visual highlighting
+- Border-bottom dividers in lists
+- Gradient backgrounds for emphasis
+
+KEY TECHNIQUES:
+1. Grid for multi-column layouts
+2. Color coding for health categories
+3. transform: scale() for highlighting
+4. border-bottom for item separators
+5. :last-child to remove final divider
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -37,6 +60,9 @@ h2 {
     text-align: center;
 }
 
+/* ============================================
+   TABS
+   ============================================ */
 .tabs {
     display: flex;
     gap: 10px;
@@ -82,6 +108,9 @@ h2 {
     padding: 30px;
 }
 
+/* ============================================
+   UNIT TOGGLE
+   ============================================ */
 .unit-toggle {
     display: flex;
     gap: 10px;
@@ -111,9 +140,14 @@ h2 {
     border-color: #667eea;
 }
 
+/* ============================================
+   INPUTS
+   ============================================
+   LEARNING: Grid layout for side-by-side inputs
+*/
 .unit-inputs {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;  /* Two equal columns */
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -167,6 +201,9 @@ h2 {
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
+/* ============================================
+   RESULT CARD
+   ============================================ */
 .result-card {
     margin-top: 20px;
     padding: 20px;
@@ -197,6 +234,11 @@ h2 {
     margin-bottom: 20px;
 }
 
+/* ============================================
+   BMI CHART
+   ============================================
+   LEARNING: Color-coded health categories
+*/
 .bmi-chart {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -225,27 +267,34 @@ h2 {
     opacity: 0.9;
 }
 
+/* LEARNING: Color-coded categories */
 .chart-bar.underweight {
-    background: #63b3ed;
+    background: #63b3ed;  /* Blue */
 }
 
 .chart-bar.normal {
-    background: #48bb78;
+    background: #48bb78;  /* Green */
 }
 
 .chart-bar.overweight {
-    background: #ed8936;
+    background: #ed8936;  /* Orange */
 }
 
 .chart-bar.obese {
-    background: #fc8181;
+    background: #fc8181;  /* Red */
 }
 
+/* LEARNING: .active class highlights user's category */
 .chart-bar.active {
-    transform: scale(1.1);
+    transform: scale(1.1);  /* Enlarge */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* ============================================
+   AGE DISPLAY
+   ============================================
+   LEARNING: 3-column grid for Y/M/D
+*/
 .age-display {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -271,6 +320,11 @@ h2 {
     opacity: 0.9;
 }
 
+/* ============================================
+   AGE DETAILS
+   ============================================
+   LEARNING: border-bottom for item separators
+*/
 .age-details {
     background: #f7fafc;
     padding: 20px;
@@ -285,7 +339,7 @@ h2 {
 }
 
 .detail-item:last-child {
-    border-bottom: none;
+    border-bottom: none;  /* Remove last divider */
 }
 
 .detail-label {
@@ -298,6 +352,9 @@ h2 {
     font-weight: bold;
 }
 
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -309,6 +366,9 @@ h2 {
     }
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 600px) {
     .container {
         padding: 20px;
@@ -319,15 +379,15 @@ h2 {
     }
 
     .unit-inputs {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;  /* Stack on mobile */
     }
 
     .bmi-chart {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);  /* 2x2 grid */
     }
 
     .age-display {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr;  /* Stack vertically */
     }
 
     .result-value {
@@ -338,4 +398,3 @@ h2 {
         font-size: 2rem;
     }
 }
-

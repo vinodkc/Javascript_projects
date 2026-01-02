@@ -1,3 +1,8 @@
+/*
+COUNTDOWN TIMER - LEARNING: Gradient backgrounds, monospace for numbers,
+@keyframes bounce animation, grid for date/time inputs
+*/
+
 * {
     margin: 0;
     padding: 0;
@@ -177,6 +182,7 @@ h3 {
     transform: scale(1.1);
 }
 
+/* Countdown display with gradient boxes */
 .countdown {
     display: flex;
     justify-content: center;
@@ -352,4 +358,3 @@ h3 {
         font-size: 5rem;
     }
 }
-

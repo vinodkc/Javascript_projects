@@ -1,3 +1,26 @@
+/*
+============================================
+QUIZ APP - CSS STYLES
+============================================
+
+LEARNING POINTS:
+- Multi-screen layout (.hidden for state)
+- Progress bar animations
+- Option states (hover, selected, correct, incorrect)
+- Color-coded results (green/red)
+- Review screen styling
+
+KEY TECHNIQUES:
+1. .hidden class for screen management
+2. Width transitions for progress bar
+3. Disabled state styling
+4. Color-coded answer feedback
+5. Gradient backgrounds for emphasis
+*/
+
+/* ============================================
+   GLOBAL RESET
+   ============================================ */
 * {
     margin: 0;
     padding: 0;
@@ -27,10 +50,14 @@ body {
     min-height: 500px;
 }
 
+/* LEARNING: .hidden controls which screen is visible */
 .hidden {
     display: none !important;
 }
 
+/* ============================================
+   START SCREEN
+   ============================================ */
 .start-screen {
     text-align: center;
 }
@@ -99,10 +126,14 @@ h1 {
     box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
 }
 
+/* ============================================
+   QUIZ SCREEN
+   ============================================ */
 .quiz-header {
     margin-bottom: 30px;
 }
 
+/* LEARNING: Progress bar with animated fill */
 .progress-bar {
     height: 10px;
     background: #e2e8f0;
@@ -114,7 +145,7 @@ h1 {
 .progress-fill {
     height: 100%;
     background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    transition: width 0.3s;
+    transition: width 0.3s;  /* Smooth width changes */
 }
 
 .quiz-stats {
@@ -131,6 +162,11 @@ h1 {
     line-height: 1.5;
 }
 
+/* ============================================
+   OPTIONS
+   ============================================
+   LEARNING: Multiple states for visual feedback
+*/
 .options {
     display: flex;
     flex-direction: column;
@@ -155,20 +191,23 @@ h1 {
     transform: translateX(5px);
 }
 
+/* LEARNING: .selected class when user clicks */
 .option.selected {
     background: #667eea;
     color: white;
     border-color: #667eea;
 }
 
+/* LEARNING: .correct class for right answer */
 .option.correct {
-    background: #48bb78;
+    background: #48bb78;  /* Green */
     color: white;
     border-color: #48bb78;
 }
 
+/* LEARNING: .incorrect class for wrong answer */
 .option.incorrect {
-    background: #fc8181;
+    background: #fc8181;  /* Red */
     color: white;
     border-color: #fc8181;
 }
@@ -182,6 +221,9 @@ h1 {
     width: 100%;
 }
 
+/* ============================================
+   RESULT SCREEN
+   ============================================ */
 .result-screen {
     text-align: center;
 }
@@ -197,6 +239,7 @@ h1 {
     font-size: 2rem;
 }
 
+/* LEARNING: Gradient card for final score */
 .final-score {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     padding: 40px;
@@ -229,6 +272,11 @@ h1 {
     font-weight: 600;
 }
 
+/* ============================================
+   ANSWER SUMMARY
+   ============================================
+   Color-coded correct/incorrect stats
+*/
 .answer-summary {
     background: #f7fafc;
     padding: 30px;
@@ -257,11 +305,11 @@ h1 {
 }
 
 .summary-item.correct {
-    background: #c6f6d5;
+    background: #c6f6d5;  /* Light green */
 }
 
 .summary-item.incorrect {
-    background: #fed7d7;
+    background: #fed7d7;  /* Light red */
 }
 
 .summary-icon {
@@ -294,6 +342,11 @@ h1 {
     justify-content: center;
 }
 
+/* ============================================
+   REVIEW SCREEN
+   ============================================
+   Shows all answers for learning
+*/
 .review-screen h2 {
     color: #2d3748;
     margin-bottom: 30px;
@@ -339,6 +392,9 @@ h1 {
     color: #22543d;
 }
 
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
 @media (max-width: 600px) {
     .quiz-container {
         padding: 20px;
@@ -364,4 +420,3 @@ h1 {
         font-size: 2.5rem;
     }
 }
-
